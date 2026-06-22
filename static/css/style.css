@@ -1094,3 +1094,62 @@ input:checked + .switch-slider:before {
 .hidden {
     display: none !important;
 }
+
+/* AI Analysis Engine Panel Specific Styles */
+.ai-engine-desc {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+}
+
+.ai-features-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.ai-feature-item {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--status-success);
+    background-color: rgba(16, 185, 129, 0.05);
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid rgba(16, 185, 129, 0.1);
+}
+
+/* Collapsible Advanced Settings Accordion styling */
+.advanced-accordion {
+    border: 1px solid var(--border-color);
+    background-color: #fafafb;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.advanced-accordion[open] {
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02);
+}
+
+.advanced-summary {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    padding: 12px 16px;
+    cursor: pointer;
+    outline: none;
+    list-style: none;
+    user-select: none;
+}
+
+.advanced-summary::-webkit-details-marker {
+    display: none;
+}
+
+.advanced-content {
+    padding: 16px;
+    border-top: 1px solid var(--border-color);
+    background-color: var(--card-background);
+}

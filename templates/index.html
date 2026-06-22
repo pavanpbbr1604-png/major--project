@@ -105,53 +105,71 @@
                     </div>
                 </div>
 
-                <!-- Parameters Card -->
+                <!-- AI Engine Panel -->
                 <div class="card params-card">
-                    <h2 class="card-title">2. Pipeline Configuration</h2>
+                    <h2 class="card-title">AI Analysis Engine</h2>
                     
-                    <div class="form-group">
-                        <label class="form-label" for="param-imgsz">Inference Resolution (imgsz)</label>
-                        <select class="form-select" id="param-imgsz">
-                            <option value="1280" selected>1280px (Standard)</option>
-                            <option value="1536">1536px (High accuracy)</option>
-                            <option value="1920">1920px (Maximum detail)</option>
-                        </select>
+                    <p class="ai-engine-desc">
+                        Our AI engine automatically optimizes detection, fusion, and density estimation settings to provide the most accurate crowd analysis results.
+                    </p>
+
+                    <div class="ai-features-list">
+                        <div class="ai-feature-item">✓ High Accuracy Person Detection</div>
+                        <div class="ai-feature-item">✓ Multi-Perspective Crowd Fusion</div>
+                        <div class="ai-feature-item">✓ Reliability-Based Estimation</div>
+                        <div class="ai-feature-item">✓ Crowd Density Classification</div>
+                        <div class="ai-feature-item">✓ Historical Analysis Tracking</div>
                     </div>
 
-                    <div class="form-group">
-                        <label class="form-label" for="param-tiled">Sliding Window (Overlapping Tiling)</label>
-                        <div class="toggle-switch">
-                            <input type="checkbox" id="param-tiled" checked>
-                            <label for="param-tiled" class="switch-slider"></label>
-                        </div>
-                    </div>
-
-                    <div class="form-group" id="tiling-params">
-                        <div class="sub-form-row">
-                            <div>
-                                <label class="form-label-mini" for="param-tile-size">Tile Size</label>
-                                <input type="number" class="form-input" id="param-tile-size" value="640">
+                    <!-- Collapsible Advanced Settings (Testing & Developers) -->
+                    <details class="advanced-accordion">
+                        <summary class="advanced-summary">⚙ Advanced Settings</summary>
+                        <div class="advanced-content">
+                            <div class="form-group">
+                                <label class="form-label" for="param-imgsz">Inference Resolution (imgsz)</label>
+                                <select class="form-select" id="param-imgsz">
+                                    <option value="1280" selected>1280px (Standard)</option>
+                                    <option value="1536">1536px (High accuracy)</option>
+                                    <option value="1920">1920px (Maximum detail)</option>
+                                </select>
                             </div>
-                            <div>
-                                <label class="form-label-mini" for="param-tile-overlap">Overlap</label>
-                                <input type="number" class="form-input" id="param-tile-overlap" value="128">
+
+                            <div class="form-group">
+                                <label class="form-label" for="param-tiled">Sliding Window (Overlapping Tiling)</label>
+                                <div class="toggle-switch">
+                                    <input type="checkbox" id="param-tiled" checked>
+                                    <label for="param-tiled" class="switch-slider"></label>
+                                </div>
+                            </div>
+
+                            <div class="form-group" id="tiling-params">
+                                <div class="sub-form-row">
+                                    <div>
+                                        <label class="form-label-mini" for="param-tile-size">Tile Size</label>
+                                        <input type="number" class="form-input" id="param-tile-size" value="640">
+                                    </div>
+                                    <div>
+                                        <label class="form-label-mini" for="param-tile-overlap">Overlap</label>
+                                        <input type="number" class="form-input" id="param-tile-overlap" value="128">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="param-tta">Test Time Augmentation (TTA)</label>
+                                <div class="toggle-switch">
+                                    <input type="checkbox" id="param-tta" checked>
+                                    <label for="param-tta" class="switch-slider"></label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="param-overlap-factor" id="lbl-overlap-factor">Perspective Overlap Factor</label>
+                                <input type="range" class="form-slider" id="param-overlap-factor" min="0.0" max="1.0" step="0.05" value="0.5">
+                                <div class="slider-val" id="val-overlap-factor">0.50 (Moderate Overlap)</div>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="form-label" for="param-tta">Test Time Augmentation (TTA)</label>
-                        <div class="toggle-switch">
-                            <input type="checkbox" id="param-tta">
-                            <label for="param-tta" class="switch-slider"></label>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="form-label" for="param-overlap-factor" id="lbl-overlap-factor">Perspective Overlap Factor</label>
-                        <input type="range" class="form-slider" id="param-overlap-factor" min="0.0" max="1.0" step="0.05" value="0.5">
-                        <div class="slider-val" id="val-overlap-factor">0.50 (Moderate Overlap)</div>
-                    </div>
+                    </details>
 
                     <button class="btn btn-primary" id="btn-analyze" disabled>Analyze Crowd</button>
                 </div>
