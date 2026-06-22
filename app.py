@@ -4,7 +4,7 @@ import uuid
 import json
 import cv2
 import numpy as np
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 
 # Import modular utilities
 from utils.preprocessing import adaptive_preprocess
@@ -21,6 +21,10 @@ app = Flask(__name__)
 
 # Initialize database
 init_db()
+
+@app.route("/", methods=["GET"])
+def home_index():
+    return render_template("index.html")
 
 # Initialize the detector once at startup (loads yolov8x.pt)
 try:
