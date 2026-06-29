@@ -26,14 +26,32 @@ init_db()
 def home_index():
     return render_template("index.html")
 
-# Initialize the detector once at startup (loads yolov8x.pt)
+# Initialize the detector once at startup (loads yolov8s.onnx)
 try:
-    detector = CrowdDetector("yolov8x.pt")
+    detector = CrowdDetector("models/yolov8s.onnx")
 except Exception as e:
-    print(f"Warning: Could not initialize CrowdDetector (YOLOv8x): {e}")
+    print(f"Warning: Could not initialize CrowdDetector (YOLOv8s): {e}")
     detector = None
 
-def process_single_image(image_bytes, filename, request_args):
+def draw_detections(image, detections):
+    """
+    Draws bounding boxes and confidence labels on the image.
+    """
+    annotated = image.copy()
+    for det in detections:
+        bbox = det["bbox"]
+        conf = det["confidence"]
+        x1, y1, x2, y2 = int(round(bbox[0])), int(round(bbox[1])), int(round(bbox[2])), int(round(bbox[3]))
+        
+        # Draw bounding box (green)
+        cv2.rectangle(annotated, (x1, y1), (x2, y2), (0, 255, 0), 2)
+        
+        # Draw label
+        label = f"{conf:.2f}"
+        cv2.putText(annotated, label, (x1, max(y1 - 5, 15)), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 1)
+    return annotated
+
+def process_single_image(image_bytes, filename, request_args, save_prefix=None):
     """
     Helper function to run the full pipeline on a single image buffer.
     """
@@ -127,7 +145,7 @@ def process_single_image(image_bytes, filename, request_args):
         high_threshold=high_class_thresh
     )
     
-    return {
+    result = {
         "filename": filename,
         "original_shape": list(original_shape),
         "scale_factor": scale_factor,
@@ -137,6 +155,27 @@ def process_single_image(image_bytes, filename, request_args):
         "reliability": reliability_data,
         "classification": classification_data
     }
+    
+    if save_prefix:
+        try:
+            uploads_dir = os.path.join("static", "uploads")
+            os.makedirs(uploads_dir, exist_ok=True)
+            
+            orig_filename = f"{save_prefix}_original.jpg"
+            orig_path = os.path.join(uploads_dir, orig_filename)
+            cv2.imwrite(orig_path, image)
+            
+            annotated = draw_detections(image, final_detections)
+            proc_filename = f"{save_prefix}_processed.jpg"
+            proc_path = os.path.join(uploads_dir, proc_filename)
+            cv2.imwrite(proc_path, annotated)
+            
+            result["original_url"] = f"/static/uploads/{orig_filename}"
+            result["processed_url"] = f"/static/uploads/{proc_filename}"
+        except Exception as e:
+            print(f"Warning: Could not save processed images: {e}")
+            
+    return result
 
 @app.route("/health", methods=["GET"])
 def health():
@@ -158,16 +197,16 @@ def analyze_image():
         return jsonify({"error": "No image file provided under key 'image'"}), 400
         
     file = request.files["image"]
+    analysis_id = str(uuid.uuid4())
     
     try:
-        res = process_single_image(file.read(), file.filename, request.args)
+        res = process_single_image(file.read(), file.filename, request.args, save_prefix=analysis_id)
     except ValueError as ve:
         return jsonify({"error": str(ve)}), 400
     except Exception as e:
         return jsonify({"error": f"Inference failure: {e}"}), 500
         
     # Save to history database
-    analysis_id = str(uuid.uuid4())
     save_analysis(
         analysis_id=analysis_id,
         uploaded_image_names=[res["filename"]],
@@ -188,7 +227,9 @@ def analyze_image():
         "counting": res["counting"],
         "density": res["density"],
         "reliability": res["reliability"],
-        "classification": res["classification"]
+        "classification": res["classification"],
+        "original_url": res.get("original_url"),
+        "processed_url": res.get("processed_url")
     }
     
     return jsonify(response)
@@ -207,11 +248,13 @@ def analyze_multi_images():
         
     view_results = []
     image_names = []
+    analysis_id = str(uuid.uuid4())
     
     try:
-        for key in sorted(image_keys):
+        for idx, key in enumerate(sorted(image_keys)):
             file = request.files[key]
-            res = process_single_image(file.read(), file.filename, request.args)
+            save_prefix = f"{analysis_id}_view{idx+1}"
+            res = process_single_image(file.read(), file.filename, request.args, save_prefix=save_prefix)
             view_results.append(res)
             image_names.append(file.filename)
     except ValueError as ve:
@@ -246,7 +289,6 @@ def analyze_multi_images():
     )
     
     # Save fused run details to SQLite database
-    analysis_id = str(uuid.uuid4())
     save_analysis(
         analysis_id=analysis_id,
         uploaded_image_names=image_names,

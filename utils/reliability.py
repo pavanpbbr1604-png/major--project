@@ -50,13 +50,32 @@ def analyze_reliability(
             
     small_ratio = small_boxes / total_count
     
-    # 3. Occlusion/Overlap Indicator
+    # 3. Occlusion/Overlap Indicator (vectorized for high efficiency)
     overlap_count = 0
-    for i in range(total_count):
-        for j in range(i + 1, total_count):
-            iou = compute_iou(detections[i]["bbox"], detections[j]["bbox"])
-            if iou > overlap_indicator_threshold:
-                overlap_count += 1
+    if total_count > 1:
+        bboxes = np.array([det["bbox"] for det in detections], dtype=np.float32)
+        x1 = bboxes[:, 0]
+        y1 = bboxes[:, 1]
+        x2 = bboxes[:, 2]
+        y2 = bboxes[:, 3]
+        areas = (x2 - x1) * (y2 - y1)
+        
+        # Pairwise intersections
+        xx1 = np.maximum(x1[:, None], x1[None, :])
+        yy1 = np.maximum(y1[:, None], y1[None, :])
+        xx2 = np.minimum(x2[:, None], x2[None, :])
+        yy2 = np.minimum(y2[:, None], y2[None, :])
+        
+        w = np.maximum(0.0, xx2 - xx1)
+        h = np.maximum(0.0, yy2 - yy1)
+        inter = w * h
+        
+        union = areas[:, None] + areas[None, :] - inter
+        iou = np.zeros_like(inter)
+        np.divide(inter, union, out=iou, where=union > 0)
+        
+        np.fill_diagonal(iou, 0.0)
+        overlap_count = int(np.sum(iou > overlap_indicator_threshold) // 2)
                 
     occlusion_ratio = min(1.0, overlap_count / total_count)
     

@@ -19,38 +19,42 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // Upload Mode Switcher
-    const modeSingleBtn = document.getElementById("mode-single");
-    const modeMultiBtn = document.getElementById("mode-multi");
-    const singleDropzone = document.getElementById("single-dropzone-area");
-    const multiDropzone = document.getElementById("multi-dropzone-area");
+    // Upload Mode Selection Handler
+    const perspectiveSelect = document.getElementById("perspective-select");
     const lblOverlap = document.getElementById("lbl-overlap-factor");
     const sliderOverlap = document.getElementById("param-overlap-factor");
     const valOverlap = document.getElementById("val-overlap-factor");
 
     let isMultiMode = false;
+    let selectedPerspectives = 1;
 
-    modeSingleBtn.addEventListener("click", () => {
-        isMultiMode = false;
-        modeSingleBtn.classList.add("active");
-        modeMultiBtn.classList.remove("active");
-        singleDropzone.classList.remove("hidden");
-        multiDropzone.classList.add("hidden");
-        lblOverlap.classList.add("hidden");
-        sliderOverlap.classList.add("hidden");
-        valOverlap.classList.add("hidden");
-        checkFormValidity();
-    });
+    perspectiveSelect.addEventListener("change", (e) => {
+        selectedPerspectives = parseInt(e.target.value, 10);
+        isMultiMode = (selectedPerspectives > 1);
 
-    modeMultiBtn.addEventListener("click", () => {
-        isMultiMode = true;
-        modeMultiBtn.classList.add("active");
-        modeSingleBtn.classList.remove("active");
-        multiDropzone.classList.remove("hidden");
-        singleDropzone.classList.add("hidden");
-        lblOverlap.classList.remove("hidden");
-        sliderOverlap.classList.remove("hidden");
-        valOverlap.classList.remove("hidden");
+        // Show/hide perspective overlap factor settings
+        if (isMultiMode) {
+            lblOverlap.classList.remove("hidden");
+            sliderOverlap.classList.remove("hidden");
+            valOverlap.classList.remove("hidden");
+        } else {
+            lblOverlap.classList.add("hidden");
+            sliderOverlap.classList.add("hidden");
+            valOverlap.classList.add("hidden");
+        }
+
+        // Show/hide dropzones based on selected number of perspectives
+        for (let i = 1; i <= 4; i++) {
+            const item = document.getElementById(`item-view${i}`);
+            if (i <= selectedPerspectives) {
+                item.classList.remove("hidden");
+            } else {
+                item.classList.add("hidden");
+                // Clear any stored file for hidden perspective
+                clearFileInput(`input-view${i}`, `preview-view${i}`, `wrapper-view${i}`, `label-view${i}`, `view${i}`);
+            }
+        }
+
         checkFormValidity();
     });
 
@@ -82,11 +86,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Files Storage & Dropzone Previews
     const filesStore = {
-        single: null,
         view1: null,
         view2: null,
-        view3: null
+        view3: null,
+        view4: null
     };
+
+    function clearFileInput(inputElementId, previewImgId, wrapperDivId, labelId, storeKey) {
+        const input = document.getElementById(inputElementId);
+        if (input) input.value = "";
+        
+        const preview = document.getElementById(previewImgId);
+        if (preview) preview.src = "";
+        
+        const wrapper = document.getElementById(wrapperDivId);
+        if (wrapper) wrapper.classList.add("hidden");
+        
+        const label = document.getElementById(labelId);
+        if (label) label.classList.remove("hidden");
+        
+        filesStore[storeKey] = null;
+    }
 
     function setupFileInput(inputElementId, previewImgId, wrapperDivId, removeBtnId, storeKey) {
         const input = document.getElementById(inputElementId);
@@ -95,9 +115,42 @@ document.addEventListener("DOMContentLoaded", () => {
         const label = input.parentElement;
         const removeBtn = document.getElementById(removeBtnId);
 
+        // File Selection via Input
         input.addEventListener("change", (e) => {
             const file = e.target.files[0];
             if (file) {
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    preview.src = event.target.result;
+                    filesStore[storeKey] = file;
+                    label.classList.add("hidden");
+                    wrapper.classList.remove("hidden");
+                    checkFormValidity();
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Drag & Drop Functionality
+        label.addEventListener("dragover", (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            label.classList.add("dragover");
+        });
+
+        label.addEventListener("dragleave", (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            label.classList.remove("dragover");
+        });
+
+        label.addEventListener("drop", (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            label.classList.remove("dragover");
+            
+            const file = e.dataTransfer.files[0];
+            if (file && file.type.startsWith("image/")) {
                 const reader = new FileReader();
                 reader.onload = (event) => {
                     preview.src = event.target.result;
@@ -122,22 +175,24 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    setupFileInput("input-single", "preview-single", "wrapper-single", "remove-single", "single");
     setupFileInput("input-view1", "preview-view1", "wrapper-view1", "remove-view1", "view1");
     setupFileInput("input-view2", "preview-view2", "wrapper-view2", "remove-view2", "view2");
     setupFileInput("input-view3", "preview-view3", "wrapper-view3", "remove-view3", "view3");
+    setupFileInput("input-view4", "preview-view4", "wrapper-view4", "remove-view4", "view4");
 
     // Enable/Disable Analyze Button based on selection status
     const btnAnalyze = document.getElementById("btn-analyze");
 
     function checkFormValidity() {
-        if (!isMultiMode) {
-            btnAnalyze.disabled = (filesStore.single === null);
-        } else {
-            // Require at least 2 views filled for multi-perspective fusion
-            const viewsCount = [filesStore.view1, filesStore.view2, filesStore.view3].filter(f => f !== null).length;
-            btnAnalyze.disabled = (viewsCount < 2);
+        // All active views must be populated
+        let valid = true;
+        for (let i = 1; i <= selectedPerspectives; i++) {
+            if (filesStore[`view${i}`] === null) {
+                valid = false;
+                break;
+            }
         }
+        btnAnalyze.disabled = !valid;
     }
 
     // Submit Form
@@ -162,14 +217,17 @@ document.addEventListener("DOMContentLoaded", () => {
         let targetUrl = "/analyze";
 
         if (!isMultiMode) {
-            formData.append("image", filesStore.single);
+            targetUrl = "/analyze";
+            formData.append("image", filesStore.view1);
         } else {
             targetUrl = "/analyze_multi";
             urlParams.append("overlap_factor", sliderOverlap.value);
             
-            if (filesStore.view1) formData.append("image1", filesStore.view1);
-            if (filesStore.view2) formData.append("image2", filesStore.view2);
-            if (filesStore.view3) formData.append("image3", filesStore.view3);
+            for (let i = 1; i <= selectedPerspectives; i++) {
+                if (filesStore[`view${i}`]) {
+                    formData.append(`image${i}`, filesStore[`view${i}`]);
+                }
+            }
         }
 
         const requestUrl = `${targetUrl}?${urlParams.toString()}`;
@@ -257,7 +315,7 @@ document.addEventListener("DOMContentLoaded", () => {
             document.getElementById("fusion-breakdown-card").classList.add("hidden");
             
             // Set single visual comparison images
-            setComparisonImages(singleView.detections, isMulti);
+            setComparisonImages(singleView, isMulti);
         } else {
             document.getElementById("val-avg-conf").textContent = "-";
             document.getElementById("val-small-ratio").textContent = "-";
@@ -306,7 +364,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // Draw track ring
         ctx.beginPath();
         ctx.arc(x, y, radius, 0, 2 * Math.PI);
-        ctx.strokeStyle = "#f1f5f9";
+        ctx.strokeStyle = "rgba(255, 255, 255, 0.08)";
         ctx.lineWidth = 14;
         ctx.stroke();
 
@@ -337,12 +395,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (!isMulti) {
             tabRow.classList.add("hidden");
-            // Direct mock preview or base uploads
-            const fileObj = filesStore.single;
-            if (fileObj) {
-                const url = URL.createObjectURL(fileObj);
-                imgOrig.src = url;
-                imgProc.src = url; // In actual prod, the server would return visual image urls
+            if (viewData && viewData.original_url && viewData.processed_url) {
+                imgOrig.src = viewData.original_url;
+                imgProc.src = viewData.processed_url;
+            } else {
+                const fileObj = filesStore.single;
+                if (fileObj) {
+                    const url = URL.createObjectURL(fileObj);
+                    imgOrig.src = url;
+                    imgProc.src = url;
+                }
             }
         } else {
             tabRow.classList.remove("hidden");
@@ -369,13 +431,18 @@ document.addEventListener("DOMContentLoaded", () => {
         const imgOrig = document.getElementById("img-original");
         const imgProc = document.getElementById("img-processed");
         
-        const storeKeys = ["view1", "view2", "view3"];
-        const fileObj = filesStore[storeKeys[index]];
-        
-        if (fileObj) {
-            const url = URL.createObjectURL(fileObj);
-            imgOrig.src = url;
-            imgProc.src = url; // Server image output mappings
+        if (view && view.original_url && view.processed_url) {
+            imgOrig.src = view.original_url;
+            imgProc.src = view.processed_url;
+        } else {
+            const storeKeys = ["view1", "view2", "view3", "view4"];
+            const fileObj = filesStore[storeKeys[index]];
+            
+            if (fileObj) {
+                const url = URL.createObjectURL(fileObj);
+                imgOrig.src = url;
+                imgProc.src = url;
+            }
         }
     }
 
@@ -507,5 +574,98 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("img-original").src = "";
         document.getElementById("img-processed").src = "";
         document.getElementById("view-tab-row").classList.add("hidden");
+    }
+
+    // Mobile Menu Toggle handler
+    const navToggle = document.getElementById("nav-toggle");
+    const navMenu = document.getElementById("nav-menu");
+
+    if (navToggle && navMenu) {
+        navToggle.addEventListener("click", (e) => {
+            e.stopPropagation();
+            navToggle.classList.toggle("active");
+            navMenu.classList.toggle("show");
+        });
+
+        // Close mobile menu when clicking nav links
+        const menuButtons = navMenu.querySelectorAll(".nav-btn");
+        menuButtons.forEach(btn => {
+            btn.addEventListener("click", () => {
+                navToggle.classList.remove("active");
+                navMenu.classList.remove("show");
+            });
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener("click", (e) => {
+            if (!navToggle.contains(e.target) && !navMenu.contains(e.target)) {
+                navToggle.classList.remove("active");
+                navMenu.classList.remove("show");
+            }
+        });
+    }
+
+    // === PREMIUM AI DASHBOARD ANIMATIONS ===
+    
+    // 1. Subtle Parallax Lens Glow relative to Mouse Movement
+    const radialGlow = document.getElementById("radial-glow");
+    if (radialGlow) {
+        document.addEventListener("mousemove", (e) => {
+            if (document.hidden) return;
+            // Calculate offsets
+            const moveX = (e.clientX - window.innerWidth / 2) * 0.04;
+            const moveY = (e.clientY - window.innerHeight / 2) * 0.04;
+            
+            // Apply slight transform translation
+            radialGlow.style.transform = `translate3d(calc(-50% + ${moveX}px), calc(-50% + ${moveY}px), 0)`;
+        });
+    }
+
+    // 4. Scrolled Navbar Blur Enhancement (No overrides, styles handled in style.css)
+    const navbar = document.querySelector(".navbar");
+    if (navbar) {
+        window.addEventListener("scroll", () => {
+            // Stylings are handled cleanly in style.css to support neubrutalism
+        }, { passive: true });
+    }
+
+    // 5. Scroll Parallax for Hero Section
+    const heroSection = document.querySelector(".hero-section");
+    const dashboardContainer = document.querySelector(".centered-dashboard-container");
+
+    if (heroSection && dashboardContainer) {
+        // Ensure dashboard sits on top of the hero section
+        dashboardContainer.style.zIndex = "10";
+        heroSection.style.zIndex = "1";
+        heroSection.style.position = "relative";
+        heroSection.style.transformOrigin = "center top"; // Scale from the top
+
+        window.addEventListener("scroll", () => {
+            if (document.getElementById("tab-upload").classList.contains("active")) {
+                const scrollY = window.scrollY;
+                
+                // Fade out extremely fast (completely vanished by 120px)
+                let opacity = 1 - (scrollY / 120);
+                opacity = Math.max(0, opacity);
+                
+                // Shrink rapidly into the screen
+                let scale = 1 - (scrollY / 400);
+                scale = Math.max(0.5, scale);
+                
+                // Translate downwards (parallax)
+                let translateY = scrollY * 0.4;
+                
+                heroSection.style.opacity = opacity;
+                
+                // If completely faded out, hide it from pointer events just in case
+                if (opacity === 0) {
+                    heroSection.style.pointerEvents = "none";
+                } else {
+                    heroSection.style.pointerEvents = "auto";
+                }
+                
+                heroSection.style.transform = `translateY(${translateY}px) scale(${scale})`;
+            }
+        }, { passive: true });
     }
 });

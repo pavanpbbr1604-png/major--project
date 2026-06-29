@@ -57,37 +57,28 @@ def run_tiled_inference(
         tile = image[y_min:y_max, x_min:x_max]
         
         # Ensure the tile matches tile_size (pad if necessary, though get_tile_coordinates handles sizes)
-        # Run inference
-        results = model.predict(
-            source=tile,
-            imgsz=tile_size,
-            conf=conf_threshold,
-            classes=[0],
-            device=device,
-            verbose=False
-        )
+        # Run inference using OpenCV DNN
+        detections = model.detect_standard(tile, imgsz=tile_size, conf_threshold=conf_threshold)
         
         curr_tile_dets = []
-        if len(results) > 0:
-            boxes = results[0].boxes
-            for box in boxes:
-                xyxy = box.xyxy[0].cpu().numpy()
-                conf = float(box.conf[0].cpu().numpy())
-                
-                # Shift coordinates back to original image space
-                global_bbox = [
-                    float(xyxy[0] + x_min),
-                    float(xyxy[1] + y_min),
-                    float(xyxy[2] + x_min),
-                    float(xyxy[3] + y_min)
-                ]
-                det = {
-                    "bbox": global_bbox,
-                    "confidence": conf,
-                    "tile_origin": (y_min, x_min, y_max, x_max)
-                }
-                raw_detections.append(det)
-                curr_tile_dets.append(det)
+        for det in detections:
+            bbox = det["bbox"]
+            conf = det["confidence"]
+            
+            # Shift coordinates back to original image space
+            global_bbox = [
+                float(bbox[0] + x_min),
+                float(bbox[1] + y_min),
+                float(bbox[2] + x_min),
+                float(bbox[3] + y_min)
+            ]
+            global_det = {
+                "bbox": global_bbox,
+                "confidence": conf,
+                "tile_origin": (y_min, x_min, y_max, x_max)
+            }
+            raw_detections.append(global_det)
+            curr_tile_dets.append(global_det)
         tile_detections.append(curr_tile_dets)
 
     # Calculate tile overlap consistency:

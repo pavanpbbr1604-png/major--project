@@ -12,6 +12,27 @@
     <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
+    <!-- Flying Biplane Background Animation -->
+    <div class="bg-plane-container">
+        <svg class="biplane-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20,52 L5,52 L2,55 L20,55 Z" fill="#0f172a"/>
+            <path d="M15,42 L5,25 L5,45 Z" fill="#0f172a"/>
+            <path d="M80,45 L30,45 L15,42 L5,45 L5,50 L15,55 L30,55 L80,55 Z" fill="#0f172a"/>
+            <path d="M70,65 L40,65 L35,60 L75,60 Z" fill="#0f172a"/>
+            <path d="M70,35 L40,35 L35,40 L75,40 Z" fill="#0f172a"/>
+            <line x1="65" y1="40" x2="65" y2="60" stroke="#0f172a" stroke-width="2"/>
+            <line x1="45" y1="40" x2="45" y2="60" stroke="#0f172a" stroke-width="2"/>
+            <line x1="65" y1="55" x2="70" y2="75" stroke="#0f172a" stroke-width="2"/>
+            <line x1="55" y1="55" x2="65" y2="75" stroke="#0f172a" stroke-width="2"/>
+            <circle cx="68" cy="75" r="4" fill="#0f172a"/>
+            <rect x="80" y="42" width="10" height="16" rx="2" fill="#0f172a"/>
+            <ellipse cx="90" cy="50" rx="3" ry="25" fill="#334155" opacity="0.3"/>
+            <ellipse cx="90" cy="50" rx="2" ry="10" fill="#0f172a"/>
+        </svg>
+    </div>
+    <!-- Crowd Simulator Canvas Background -->
+    <canvas id="crowd-canvas"></canvas>
+
     <!-- Navigation Bar -->
     <header class="navbar">
         <div class="nav-container">
@@ -19,7 +40,13 @@
                 <span class="logo-icon">📊</span>
                 <span class="logo-text">Crowd Density Analytics</span>
             </div>
-            <nav class="nav-links">
+            <!-- Mobile Menu Toggle Button -->
+            <button class="mobile-toggle" aria-label="Toggle Menu" id="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            <nav class="nav-links" id="nav-menu">
                 <button class="nav-btn active" data-tab="tab-upload">Upload & Analyze</button>
                 <button class="nav-btn" data-tab="tab-history" id="btn-nav-history">Analysis History</button>
                 <button class="nav-btn" data-tab="tab-about">About Project</button>
@@ -33,41 +60,35 @@
             <!-- Hero Section -->
             <div class="hero-section">
                 <h1 class="hero-title">AI-Powered Crowd Density Analysis</h1>
-                <p class="hero-subtitle">Upload crowd images from multiple perspectives to estimate crowd density, crowd count, and crowd level.</p>
+                <p class="hero-subtitle">Analyze crowd density, estimate crowd count, and generate intelligent crowd insights using multi-perspective image analysis.</p>
             </div>
 
 
-            <!-- Upload Area & Configuration Grid -->
-            <div class="dashboard-grid">
+            <!-- Centered Upload and Actions Panel -->
+            <div class="centered-dashboard-container" style="position: relative;">
+                <!-- Center Radial Glow Behind Card -->
+                <div class="radial-glow-backdrop" id="radial-glow"></div>
                 <!-- Dropzone Card -->
                 <div class="card upload-card">
-                    <h2 class="card-title">1. Upload Input Images</h2>
-                    
-                    <div class="upload-mode-toggle">
-                        <button class="toggle-btn active" id="mode-single">Single Image</button>
-                        <button class="toggle-btn" id="mode-multi">Multi-Perspective (2-3 Views)</button>
+                    <h2 class="card-title">Upload Input Images</h2>
+                                      <div style="margin-bottom: 20px;">
+                        <label for="perspective-select" style="display: block; font-size: 14px; font-weight: 500; margin-bottom: 8px; color: var(--text-secondary);">Number of Camera Perspectives:</label>
+                        <select id="perspective-select" class="form-select" style="width: 100%; max-width: 320px;">
+                            <option value="1" selected>1 (Single View)</option>
+                            <option value="2">2 Perspectives</option>
+                            <option value="3">3 Perspectives</option>
+                            <option value="4">4 Perspectives</option>
+                        </select>
                     </div>
 
-                    <!-- Single Image Box -->
-                    <div class="dropzone-container" id="single-dropzone-area">
-                        <label for="input-single" class="dropzone" id="dropzone-label-single">
-                            <span class="dropzone-icon">📥</span>
-                            <span class="dropzone-text">Drag & drop or click to upload image</span>
-                            <span class="dropzone-format">Supports: JPG, PNG, WEBP (Max 10MB)</span>
-                            <input type="file" id="input-single" accept="image/*" class="file-input">
-                        </label>
-                        <div class="preview-wrapper hidden" id="wrapper-single">
-                            <img src="" alt="Preview" id="preview-single" class="upload-preview">
-                            <button class="remove-btn" id="remove-single">Remove</button>
-                        </div>
-                    </div>
-
-                    <!-- Multi Image Grid (Initially Hidden) -->
-                    <div class="dropzone-grid hidden" id="multi-dropzone-area">
-                        <div class="dropzone-item">
+                    <!-- Unified Dropzones Grid -->
+                    <div class="dropzone-grid" id="dropzones-container">
+                        <div class="dropzone-item" id="item-view1">
                             <span class="view-tag">Perspective 1</span>
                             <label for="input-view1" class="dropzone-mini" id="label-view1">
-                                <span class="dropzone-icon-mini">📷</span>
+                                <span class="dropzone-icon-mini">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"></path><circle cx="12" cy="13" r="3"></circle></svg>
+                                </span>
                                 <span class="dropzone-format-mini">JPG/PNG</span>
                                 <input type="file" id="input-view1" accept="image/*" class="file-input">
                             </label>
@@ -77,10 +98,12 @@
                             </div>
                         </div>
                         
-                        <div class="dropzone-item">
+                        <div class="dropzone-item hidden" id="item-view2">
                             <span class="view-tag">Perspective 2</span>
                             <label for="input-view2" class="dropzone-mini" id="label-view2">
-                                <span class="dropzone-icon-mini">📷</span>
+                                <span class="dropzone-icon-mini">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"></path><circle cx="12" cy="13" r="3"></circle></svg>
+                                </span>
                                 <span class="dropzone-format-mini">JPG/PNG</span>
                                 <input type="file" id="input-view2" accept="image/*" class="file-input">
                             </label>
@@ -90,10 +113,12 @@
                             </div>
                         </div>
 
-                        <div class="dropzone-item">
+                        <div class="dropzone-item hidden" id="item-view3">
                             <span class="view-tag">Perspective 3</span>
                             <label for="input-view3" class="dropzone-mini" id="label-view3">
-                                <span class="dropzone-icon-mini">📷</span>
+                                <span class="dropzone-icon-mini">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"></path><circle cx="12" cy="13" r="3"></circle></svg>
+                                </span>
                                 <span class="dropzone-format-mini">JPG/PNG</span>
                                 <input type="file" id="input-view3" accept="image/*" class="file-input">
                             </label>
@@ -102,77 +127,74 @@
                                 <button class="remove-btn-mini" id="remove-view3">×</button>
                             </div>
                         </div>
-                    </div>
-                </div>
 
-                <!-- AI Engine Panel -->
-                <div class="card params-card">
-                    <h2 class="card-title">AI Analysis Engine</h2>
-                    
-                    <p class="ai-engine-desc">
-                        Our AI engine automatically optimizes detection, fusion, and density estimation settings to provide the most accurate crowd analysis results.
-                    </p>
-
-                    <div class="ai-features-list">
-                        <div class="ai-feature-item">✓ High Accuracy Person Detection</div>
-                        <div class="ai-feature-item">✓ Multi-Perspective Crowd Fusion</div>
-                        <div class="ai-feature-item">✓ Reliability-Based Estimation</div>
-                        <div class="ai-feature-item">✓ Crowd Density Classification</div>
-                        <div class="ai-feature-item">✓ Historical Analysis Tracking</div>
-                    </div>
-
-                    <!-- Collapsible Advanced Settings (Testing & Developers) -->
-                    <details class="advanced-accordion">
-                        <summary class="advanced-summary">⚙ Advanced Settings</summary>
-                        <div class="advanced-content">
-                            <div class="form-group">
-                                <label class="form-label" for="param-imgsz">Inference Resolution (imgsz)</label>
-                                <select class="form-select" id="param-imgsz">
-                                    <option value="1280" selected>1280px (Standard)</option>
-                                    <option value="1536">1536px (High accuracy)</option>
-                                    <option value="1920">1920px (Maximum detail)</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="form-label" for="param-tiled">Sliding Window (Overlapping Tiling)</label>
-                                <div class="toggle-switch">
-                                    <input type="checkbox" id="param-tiled" checked>
-                                    <label for="param-tiled" class="switch-slider"></label>
-                                </div>
-                            </div>
-
-                            <div class="form-group" id="tiling-params">
-                                <div class="sub-form-row">
-                                    <div>
-                                        <label class="form-label-mini" for="param-tile-size">Tile Size</label>
-                                        <input type="number" class="form-input" id="param-tile-size" value="640">
-                                    </div>
-                                    <div>
-                                        <label class="form-label-mini" for="param-tile-overlap">Overlap</label>
-                                        <input type="number" class="form-input" id="param-tile-overlap" value="128">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="form-label" for="param-tta">Test Time Augmentation (TTA)</label>
-                                <div class="toggle-switch">
-                                    <input type="checkbox" id="param-tta" checked>
-                                    <label for="param-tta" class="switch-slider"></label>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="form-label" for="param-overlap-factor" id="lbl-overlap-factor">Perspective Overlap Factor</label>
-                                <input type="range" class="form-slider" id="param-overlap-factor" min="0.0" max="1.0" step="0.05" value="0.5">
-                                <div class="slider-val" id="val-overlap-factor">0.50 (Moderate Overlap)</div>
+                        <div class="dropzone-item hidden" id="item-view4">
+                            <span class="view-tag">Perspective 4</span>
+                            <label for="input-view4" class="dropzone-mini" id="label-view4">
+                                <span class="dropzone-icon-mini">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"></path><circle cx="12" cy="13" r="3"></circle></svg>
+                                </span>
+                                <span class="dropzone-format-mini">JPG/PNG</span>
+                                <input type="file" id="input-view4" accept="image/*" class="file-input">
+                            </label>
+                            <div class="preview-mini-wrapper hidden" id="wrapper-view4">
+                                <img src="" alt="View 4" id="preview-view4" class="upload-preview-mini">
+                                <button class="remove-btn-mini" id="remove-view4">×</button>
                             </div>
                         </div>
-                    </details>
+                    </div>
 
-                    <button class="btn btn-primary" id="btn-analyze" disabled>Analyze Crowd</button>
-                </div>
+                <!-- Collapsible Advanced Settings (Testing & Developers) -->
+                <details class="advanced-accordion">
+                    <summary class="advanced-summary">⚙ Advanced Settings</summary>
+                    <div class="advanced-content">
+                        <div class="form-group">
+                            <label class="form-label" for="param-imgsz">Inference Resolution (imgsz)</label>
+                            <select class="form-select" id="param-imgsz">
+                                <option value="1280" selected>1280px (Standard)</option>
+                                <option value="1536">1536px (High accuracy)</option>
+                                <option value="1920">1920px (Maximum detail)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="param-tiled">Sliding Window (Overlapping Tiling)</label>
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="param-tiled" checked>
+                                <label for="param-tiled" class="switch-slider"></label>
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="tiling-params">
+                            <div class="sub-form-row">
+                                <div>
+                                    <label class="form-label-mini" for="param-tile-size">Tile Size</label>
+                                    <input type="number" class="form-input" id="param-tile-size" value="640">
+                                </div>
+                                <div>
+                                    <label class="form-label-mini" for="param-tile-overlap">Overlap</label>
+                                    <input type="number" class="form-input" id="param-tile-overlap" value="128">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="param-tta">Test Time Augmentation (TTA)</label>
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="param-tta" checked>
+                                <label for="param-tta" class="switch-slider"></label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="param-overlap-factor" id="lbl-overlap-factor">Perspective Overlap Factor</label>
+                            <input type="range" class="form-slider" id="param-overlap-factor" min="0.0" max="1.0" step="0.05" value="0.5">
+                            <div class="slider-val" id="val-overlap-factor">0.50 (Moderate Overlap)</div>
+                        </div>
+                    </div>
+                </details>
+
+                <button class="btn btn-primary" id="btn-analyze" disabled>Analyze Crowd</button>
             </div>
 
             <!-- Loading Spinner -->
@@ -355,6 +377,7 @@
     </div>
 
     <!-- JavaScript Controller -->
+    <script src="/static/js/crowd_sim.js"></script>
     <script src="/static/js/app.js"></script>
 </body>
 </html>
