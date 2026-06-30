@@ -136,3 +136,18 @@ def get_latest_analysis() -> dict | None:
         
     conn.close()
     return result
+
+def clear_all_history() -> int:
+    """
+    Deletes all historical analysis runs from the database.
+    """
+    init_db()
+    conn = sqlite3.connect(DB_PATH)
+    cursor = conn.cursor()
+    
+    cursor.execute("DELETE FROM analysis_history")
+    rows_affected = cursor.rowcount
+    
+    conn.commit()
+    conn.close()
+    return rows_affected

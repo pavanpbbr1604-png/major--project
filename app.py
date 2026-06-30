@@ -63,9 +63,10 @@ def process_single_image(image_bytes, filename, request_args, save_prefix=None):
         
     original_shape = image.shape
     
-    # Parse parameters
+    # Config parameters
+    imgsz = int(request_args.get("imgsz", 1280))
     iou_thresh = float(request_args.get("iou_threshold", 0.45))
-    conf_thresh = float(request_args.get("conf_threshold", 0.25))
+    conf_thresh = float(request_args.get("conf_threshold", 0.15))
     use_tiled = request_args.get("tiled", "true").lower() == "true"
     tile_size = int(request_args.get("tile_size", 640))
     tile_overlap = int(request_args.get("tile_overlap", 128))
@@ -321,6 +322,27 @@ def history():
     """
     recs = fetch_history()
     return jsonify(recs)
+
+@app.route("/history/all", methods=["DELETE"])
+def clear_history_api():
+    try:
+        from utils.database import clear_all_history
+        deleted_count = clear_all_history()
+        return jsonify({"status": "success", "message": f"Cleared {deleted_count} records."})
+    except Exception as e:
+        return jsonify({"status": "error", "message": str(e)}), 500
+
+@app.route("/history/<analysis_id>", methods=["DELETE"])
+def delete_history_record_api(analysis_id):
+    try:
+        from utils.database import delete_analysis
+        success = delete_analysis(analysis_id)
+        if success:
+            return jsonify({"status": "success", "message": "Record deleted."})
+        else:
+            return jsonify({"status": "error", "message": "Record not found."}), 404
+    except Exception as e:
+        return jsonify({"status": "error", "message": str(e)}), 500
 
 @app.route("/history/latest", methods=["GET"])
 def latest_analysis():

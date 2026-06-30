@@ -477,18 +477,19 @@ document.addEventListener("DOMContentLoaded", () => {
     // Populate SQL Logs Analysis History
     function loadHistoryTable() {
         const tbody = document.getElementById("history-table-body");
-        tbody.innerHTML = '<tr><td colspan="8" style="text-align:center">Fetching sqlite history logs...</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="9" style="text-align:center">Fetching sqlite history logs...</td></tr>';
 
         fetch("/history")
         .then(response => response.json())
         .then(data => {
+            const historyData = data.data || data; // handle wrapped response
             tbody.innerHTML = "";
-            if (data.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="8" style="text-align:center">No analysis runs stored in DB yet.</td></tr>';
+            if (!historyData || historyData.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="9" style="text-align:center; padding: 30px; font-weight: bold; color: var(--text-muted)">No analysis runs stored in DB yet.</td></tr>';
                 return;
             }
 
-            data.forEach(row => {
+            historyData.forEach(row => {
                 const tr = document.createElement("tr");
                 const timeString = new Date(row.timestamp).toLocaleString();
                 const imageCount = row.uploaded_image_names.length;
@@ -502,6 +503,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     <td><span class="badge ${row.crowd_level === 'Undercrowded' ? 'badge-success' : row.crowd_level === 'Moderate' ? 'badge-warning' : 'badge-danger'}">${row.crowd_level}</span></td>
                     <td>${(row.reliability_score * 100).toFixed(0)}%</td>
                     <td><button class="view-record-btn" data-id="${row.analysis_id}">View</button></td>
+                    <td><button class="delete-record-btn" data-id="${row.analysis_id}" title="Delete Record">🗑️</button></td>
                 `;
                 
                 tbody.appendChild(tr);
@@ -511,17 +513,80 @@ document.addEventListener("DOMContentLoaded", () => {
             document.querySelectorAll(".view-record-btn").forEach(btn => {
                 btn.addEventListener("click", () => {
                     const id = btn.getAttribute("data-id");
-                    loadHistoricRecord(id, data);
+                    loadHistoricRecord(id, historyData);
+                });
+            });
+
+            // Add click handlers for row deletes
+            document.querySelectorAll(".delete-record-btn").forEach(btn => {
+                btn.addEventListener("click", () => {
+                    const id = btn.getAttribute("data-id");
+                    showDeleteModal(id);
                 });
             });
         })
         .catch(err => {
-            tbody.innerHTML = `<tr><td colspan="8" style="text-align:center; color:var(--status-danger)">History Fetch Failed: ${err.message}</td></tr>`;
+            tbody.innerHTML = `<tr><td colspan="9" style="text-align:center; color:var(--status-danger)">History Fetch Failed: ${err.message}</td></tr>`;
         });
     }
 
     document.getElementById("btn-refresh-history").addEventListener("click", () => {
         loadHistoryTable();
+    });
+
+    // Delete History Modal Logic
+    let currentDeleteId = null;
+    const deleteModal = document.getElementById("delete-confirm-modal");
+    
+    document.getElementById("btn-clear-history").addEventListener("click", () => {
+        const hasRecords = document.querySelectorAll(".delete-record-btn").length > 0;
+        if (!hasRecords) {
+            document.getElementById("empty-history-modal").classList.remove("hidden");
+        } else {
+            showDeleteModal("all");
+        }
+    });
+
+    document.getElementById("btn-close-empty").addEventListener("click", () => {
+        document.getElementById("empty-history-modal").classList.add("hidden");
+    });
+
+    function showDeleteModal(id) {
+        currentDeleteId = id;
+        document.getElementById("delete-confirm-text").textContent = id === "all" 
+            ? "Are you absolutely sure you want to completely clear the entire analysis history? This cannot be undone."
+            : "Are you sure you want to delete this specific analysis record?";
+        deleteModal.classList.remove("hidden");
+    }
+
+    document.getElementById("btn-cancel-delete").addEventListener("click", () => {
+        deleteModal.classList.add("hidden");
+        currentDeleteId = null;
+    });
+
+    document.getElementById("btn-confirm-delete").addEventListener("click", () => {
+        if (!currentDeleteId) return;
+        
+        const endpoint = currentDeleteId === "all" ? "/history/all" : `/history/${currentDeleteId}`;
+        const btn = document.getElementById("btn-confirm-delete");
+        btn.disabled = true;
+        btn.textContent = "Deleting...";
+        
+        fetch(endpoint, { method: "DELETE" })
+            .then(res => res.json())
+            .then(data => {
+                deleteModal.classList.add("hidden");
+                loadHistoryTable();
+            })
+            .catch(err => {
+                alert("Error deleting record: " + err.message);
+                deleteModal.classList.add("hidden");
+            })
+            .finally(() => {
+                btn.disabled = false;
+                btn.textContent = "Yes, Delete";
+                currentDeleteId = null;
+            });
     });
 
     // Load Historic Run details back to Upload Panel tab
