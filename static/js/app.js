@@ -179,6 +179,30 @@ document.addEventListener("DOMContentLoaded", () => {
     setupFileInput("input-view2", "preview-view2", "wrapper-view2", "remove-view2", "view2");
     setupFileInput("input-view3", "preview-view3", "wrapper-view3", "remove-view3", "view3");
     setupFileInput("input-view4", "preview-view4", "wrapper-view4", "remove-view4", "view4");
+    // Reset Iteration Button
+    const btnResetIteration = document.getElementById("btn-reset-iteration");
+    if (btnResetIteration) {
+        btnResetIteration.addEventListener("click", () => {
+            sessionStorage.removeItem("lastAnalysisData");
+            sessionStorage.removeItem("lastIsMultiMode");
+            // Clear all file inputs by triggering the remove buttons
+            for (let i = 1; i <= 4; i++) {
+                const removeBtn = document.getElementById(`remove-view${i}`);
+                if (removeBtn) {
+                    removeBtn.click();
+                }
+            }
+            // Hide the results dashboard
+            const resultsDisplay = document.getElementById("results-display");
+            if (resultsDisplay) {
+                resultsDisplay.classList.add("hidden");
+            }
+            // Hide the reset button itself
+            btnResetIteration.classList.add("hidden");
+            // Scroll smoothly to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
 
     // Enable/Disable Analyze Button based on selection status
     const btnAnalyze = document.getElementById("btn-analyze");
@@ -243,6 +267,8 @@ document.addEventListener("DOMContentLoaded", () => {
             return response.json();
         })
         .then(data => {
+            sessionStorage.setItem("lastAnalysisData", JSON.stringify(data));
+            sessionStorage.setItem("lastIsMultiMode", JSON.stringify(isMultiMode));
             renderResults(data, isMultiMode);
         })
         .catch(err => {
@@ -257,6 +283,12 @@ document.addEventListener("DOMContentLoaded", () => {
     function renderResults(data, isMulti) {
         const resultsDisplay = document.getElementById("results-display");
         resultsDisplay.classList.remove("hidden");
+        
+        // Show the reset iteration button
+        const btnResetIteration = document.getElementById("btn-reset-iteration");
+        if (btnResetIteration) {
+            btnResetIteration.classList.remove("hidden");
+        }
 
         // Primary statistics
         const count = isMulti ? data.fusion.unified_count : data.counting.total_count;
@@ -732,5 +764,37 @@ document.addEventListener("DOMContentLoaded", () => {
                 heroSection.style.transform = `translateY(${translateY}px) scale(${scale})`;
             }
         }, { passive: true });
+    }
+
+    // Restore session data if page refreshed
+    const lastData = sessionStorage.getItem("lastAnalysisData");
+    if (lastData) {
+        try {
+            const data = JSON.parse(lastData);
+            const isMulti = JSON.parse(sessionStorage.getItem("lastIsMultiMode") || "false");
+            
+            if (!isMulti) {
+                const preview = document.getElementById("preview-view1");
+                if (preview && data.original_url) {
+                    preview.src = data.original_url;
+                    document.getElementById("label-view1").classList.add("hidden");
+                    document.getElementById("wrapper-view1").classList.remove("hidden");
+                }
+            } else {
+                perspectiveSelect.value = data.perspectives.length;
+                perspectiveSelect.dispatchEvent(new Event("change"));
+                for (let i = 0; i < data.perspectives.length; i++) {
+                    const preview = document.getElementById(`preview-view${i+1}`);
+                    if (preview && data.perspectives[i].original_url) {
+                        preview.src = data.perspectives[i].original_url;
+                        document.getElementById(`label-view${i+1}`).classList.add("hidden");
+                        document.getElementById(`wrapper-view${i+1}`).classList.remove("hidden");
+                    }
+                }
+            }
+            renderResults(data, isMulti);
+        } catch (e) {
+            console.error("Failed to restore session", e);
+        }
     }
 });

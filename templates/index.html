@@ -82,10 +82,18 @@
                 <div class="radial-glow-backdrop" id="radial-glow"></div>
                 <!-- Dropzone Card -->
                 <div class="card upload-card">
-                    <h2 class="card-title">Upload Input Images</h2>
-                                      <div style="margin-bottom: 20px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                        <h2 class="card-title" style="margin-bottom: 0;">Upload Input Images</h2>
+                        <button id="btn-reset-iteration" class="hidden" title="Start New Iteration (Reset)" style="background: none; border: none; cursor: pointer; color: #2563eb; padding: 4px; border-radius: 8px; transition: background 0.2s;" onmouseover="this.style.background='rgba(37, 99, 235, 0.1)'" onmouseout="this.style.background='none'">
+                            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="19" y1="12" x2="5" y2="12"></line>
+                                <polyline points="12 19 5 12 12 5"></polyline>
+                            </svg>
+                        </button>
+                    </div>
+                    <div style="margin-bottom: 20px; text-align: center;">
                         <label for="perspective-select" style="display: block; font-size: 14px; font-weight: 500; margin-bottom: 8px; color: var(--text-secondary);">Number of Camera Perspectives:</label>
-                        <select id="perspective-select" class="form-select" style="width: 100%; max-width: 320px;">
+                        <select id="perspective-select" class="form-select" style="width: 100%; max-width: 320px; margin: 0 auto;">
                             <option value="1" selected>1 (Single View)</option>
                             <option value="2">2 Perspectives</option>
                             <option value="3">3 Perspectives</option>
