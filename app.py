@@ -65,7 +65,7 @@ def process_single_image(image_bytes, filename, request_args, save_prefix=None):
     
     # Config parameters
     imgsz = int(request_args.get("imgsz", 1280))
-    iou_thresh = float(request_args.get("iou_threshold", 0.45))
+    iou_thresh = float(request_args.get("iou_threshold", 0.75))
     conf_thresh = float(request_args.get("conf_threshold", 0.15))
     use_tiled = request_args.get("tiled", "true").lower() == "true"
     tile_size = int(request_args.get("tile_size", 640))
