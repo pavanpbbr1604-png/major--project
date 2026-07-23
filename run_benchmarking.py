@@ -7,6 +7,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from utils.detection import CrowdDetector
 from utils.preprocessing import adaptive_preprocess
+from utils.redundancy import apply_nms
 from utils.reliability import analyze_reliability
 
 # Configuration mapping for benchmark images and their manual ground truth counts
@@ -181,7 +182,7 @@ def run_benchmark():
         preprocessed_img, scale_factor = adaptive_preprocess(image, target_size=2560, is_crowded=img_data["use_tiled"])
         yolo_input = (preprocessed_img * 255.0).astype(np.uint8)
         
-        detections, consistency_score = detector.detect_hierarchical(
+        raw_dets, consistency_score = detector.detect_hierarchical(
             yolo_input,
             imgsz=2560,
             conf_threshold=img_data["conf_threshold"],
@@ -191,11 +192,22 @@ def run_benchmark():
         )
         runtime_ms = (time.time() - t0) * 1000
         
-        pred = len(detections)
+        # Scale back coordinates and apply NMS (matching app.py)
+        scaled_dets = []
+        for det in raw_dets:
+            bbox = det["bbox"]
+            scaled_dets.append({
+                "bbox": [bbox[0]/scale_factor, bbox[1]/scale_factor, bbox[2]/scale_factor, bbox[3]/scale_factor],
+                "confidence": det["confidence"]
+            })
+            
+        final_dets = apply_nms(scaled_dets, iou_threshold=0.50, iom_threshold=0.70)
+        
+        pred = len(final_dets)
         abs_error, pct_error, precision, recall = calculate_metrics(gt, pred)
         
         # Reliability Metrics
-        rel_data = analyze_reliability(detections, yolo_input.shape, consistency_score=consistency_score)
+        rel_data = analyze_reliability(final_dets, yolo_input.shape, consistency_score=consistency_score)
         
         res = {
             "name": img_name,
