@@ -15,14 +15,14 @@ BENCHMARK_IMAGES = [
         "name": "test_image1.jpg",
         "url": None,
         "gt_count": 110,
-        "conf_threshold": 0.08,
+        "conf_threshold": 0.25,
         "use_tiled": True
     },
     {
         "name": "test_image2.jpg",
         "url": None,
         "gt_count": 110,
-        "conf_threshold": 0.08,
+        "conf_threshold": 0.25,
         "use_tiled": True
     },
     {
@@ -30,14 +30,21 @@ BENCHMARK_IMAGES = [
         "url": "https://raw.githubusercontent.com/ultralytics/yolov5/master/data/images/bus.jpg",
         "gt_count": 4,
         "conf_threshold": 0.25,
-        "use_tiled": False
+        "use_tiled": True
     },
     {
         "name": "zidane.jpg",
         "url": "https://raw.githubusercontent.com/ultralytics/yolov5/master/data/images/zidane.jpg",
-        "gt_count": 2,
+        "gt_count": 3,
         "conf_threshold": 0.25,
-        "use_tiled": False
+        "use_tiled": True
+    },
+    {
+        "name": "basketball2.png",
+        "url": "https://raw.githubusercontent.com/opencv/opencv/4.x/samples/data/basketball2.png",
+        "gt_count": 14,
+        "conf_threshold": 0.25,
+        "use_tiled": True
     }
 ]
 
