@@ -21,10 +21,11 @@ def compute_iou(box1: list[float], box2: list[float]) -> float:
         return 0.0
     return inter_area / union_area
 
-def apply_nms(detections: list[dict], iou_threshold: float = 0.5) -> list[dict]:
+def apply_nms(detections: list[dict], iou_threshold: float = 0.5, iom_threshold: float = 0.80) -> list[dict]:
     """
     Applies Non-Maximum Suppression (NMS) to eliminate overlapping bounding boxes.
-    Keeps boxes with higher confidence. Optimized using NumPy vectorization.
+    Keeps boxes with higher confidence. Checks both standard IoU and containment IoM.
+    Optimized using NumPy vectorization.
     """
     if not detections:
         return []
@@ -59,7 +60,80 @@ def apply_nms(detections: list[dict], iou_threshold: float = 0.5) -> list[dict]:
         iou = np.zeros_like(inter)
         np.divide(inter, union, out=iou, where=union > 0)
 
-        inds = np.where(iou < iou_threshold)[0]
+        # Intersection over Minimum Area (IoM) to check containment
+        min_areas = np.minimum(areas[i], areas[order[1:]])
+        iom = np.zeros_like(inter)
+        np.divide(inter, min_areas, out=iom, where=min_areas > 0)
+
+        # Suppress if IoU is high (overlapping) OR IoM is high (contained)
+        inds = np.where((iou < iou_threshold) & (iom < iom_threshold))[0]
         order = order[inds + 1]
 
     return [detections[idx] for idx in keep]
+
+def weighted_box_fusion(detections: list[dict], iou_threshold: float = 0.55) -> list[dict]:
+    """
+    Applies Weighted Box Fusion (WBF) to combine overlapping detections.
+    For boxes that have IoU >= iou_threshold, we blend their coordinates 
+    weighted by their confidence scores, keeping the highest confidence in the group.
+    
+    Args:
+        detections: List of dicts with keys 'bbox' [x1, y1, x2, y2] and 'confidence'.
+        iou_threshold: IoU threshold above which boxes are considered duplicates and fused.
+        
+    Returns:
+        List of fused/blended detections.
+    """
+    if not detections:
+        return []
+        
+    # Sort detections by confidence descending
+    sorted_dets = sorted(detections, key=lambda x: x["confidence"], reverse=True)
+    
+    fused_groups = []
+    
+    for det in sorted_dets:
+        box = det["bbox"]
+        
+        # Check if this detection matches any existing fused group
+        matched = False
+        for group in fused_groups:
+            # We compare with the current averaged box of the group
+            group_box = group["bbox"]
+            iou = compute_iou(box, group_box)
+            if iou >= iou_threshold:
+                # Add detection to this group
+                group["detections"].append(det)
+                matched = True
+                break
+                
+        if not matched:
+            # Create a new group
+            fused_groups.append({
+                "bbox": list(box),
+                "detections": [det]
+            })
+            
+    # Recompute averaged coordinates and confidences for each group
+    final_detections = []
+    for group in fused_groups:
+        dets = group["detections"]
+        
+        # Weighted average of coordinates
+        total_weight = sum(d["confidence"] for d in dets)
+        
+        x1_fused = sum(d["bbox"][0] * d["confidence"] for d in dets) / total_weight
+        y1_fused = sum(d["bbox"][1] * d["confidence"] for d in dets) / total_weight
+        x2_fused = sum(d["bbox"][2] * d["confidence"] for d in dets) / total_weight
+        y2_fused = sum(d["bbox"][3] * d["confidence"] for d in dets) / total_weight
+        
+        # Keep maximum confidence as the score for the fused box
+        max_conf = max(d["confidence"] for d in dets)
+        
+        final_detections.append({
+            "bbox": [float(x1_fused), float(y1_fused), float(x2_fused), float(y2_fused)],
+            "confidence": float(max_conf)
+        })
+        
+    return final_detections
+

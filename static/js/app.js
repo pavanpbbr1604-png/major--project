@@ -24,6 +24,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const lblOverlap = document.getElementById("lbl-overlap-factor");
     const sliderOverlap = document.getElementById("param-overlap-factor");
     const valOverlap = document.getElementById("val-overlap-factor");
+    const sliderConf = document.getElementById("param-conf-threshold");
+    const valConf = document.getElementById("val-conf-threshold");
+    const sliderIoU = document.getElementById("param-iou-threshold");
+    const valIoU = document.getElementById("val-iou-threshold");
 
     let isMultiMode = false;
     let selectedPerspectives = 1;
@@ -71,6 +75,26 @@ document.addEventListener("DOMContentLoaded", () => {
         else if (val > 0.7) overlapDesc = "High Overlap / Identical";
         
         valOverlap.textContent = `${val} (${overlapDesc})`;
+    });
+
+    sliderConf.addEventListener("input", (e) => {
+        const val = parseFloat(e.target.value).toFixed(2);
+        let confDesc = "Standard";
+        if (val < 0.15) confDesc = "High Sensitivity (Noise)";
+        else if (val < 0.25) confDesc = "Medium-High";
+        else if (val > 0.50) confDesc = "Strict / Clean";
+        
+        valConf.textContent = `${val} (${confDesc})`;
+    });
+
+    sliderIoU.addEventListener("input", (e) => {
+        const val = parseFloat(e.target.value).toFixed(2);
+        let iouDesc = "Standard";
+        if (val < 0.35) iouDesc = "Strict (Suppress overlap)";
+        else if (val < 0.55) iouDesc = "Balanced / Standard";
+        else if (val > 0.70) iouDesc = "Loose (Keep dense overlapping)";
+        
+        valIoU.textContent = `${val} (${iouDesc})`;
     });
 
     // Form inputs change handler for tiled inference
@@ -237,6 +261,10 @@ document.addEventListener("DOMContentLoaded", () => {
         urlParams.append("tile_size", document.getElementById("param-tile-size").value);
         urlParams.append("tile_overlap", document.getElementById("param-tile-overlap").value);
         urlParams.append("tta", document.getElementById("param-tta").checked.toString());
+        urlParams.append("conf_threshold", document.getElementById("param-conf-threshold").value);
+        urlParams.append("iou_threshold", document.getElementById("param-iou-threshold").value);
+        urlParams.append("deep_search", document.getElementById("param-deep-search").checked.toString());
+        urlParams.append("sharpen", document.getElementById("param-sharpen").checked.toString());
 
         let targetUrl = "/analyze";
 
@@ -726,7 +754,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }, { passive: true });
     }
 
-    // 5. Scroll Parallax for Hero Section
+    // 5. Scroll Parallax for Hero Section (Smooth Lerped Scroll)
     const heroSection = document.querySelector(".hero-section");
     const dashboardContainer = document.querySelector(".centered-dashboard-container");
 
@@ -737,31 +765,51 @@ document.addEventListener("DOMContentLoaded", () => {
         heroSection.style.position = "relative";
         heroSection.style.transformOrigin = "center top"; // Scale from the top
 
-        window.addEventListener("scroll", () => {
+        let targetScrollY = window.scrollY;
+        let currentScrollY = window.scrollY;
+        let ticking = false;
+
+        function updateParallax() {
+            // Lerp interpolation: currentScrollY crawls towards targetScrollY (12% speed factor per frame)
+            currentScrollY += (targetScrollY - currentScrollY) * 0.12;
+
             if (document.getElementById("tab-upload").classList.contains("active")) {
-                const scrollY = window.scrollY;
+                const progress = Math.min(currentScrollY / 150, 1);
                 
-                // Fade out extremely fast (completely vanished by 120px)
-                let opacity = 1 - (scrollY / 120);
-                opacity = Math.max(0, opacity);
-                
-                // Shrink rapidly into the screen
-                let scale = 1 - (scrollY / 400);
-                scale = Math.max(0.5, scale);
-                
-                // Translate downwards (parallax)
-                let translateY = scrollY * 0.4;
-                
+                // Fade out
+                let opacity = 1 - progress;
+
+                // Scale down
+                let scale = 1 - progress * 0.3;
+
+                // Translate upwards faster than scroll (so it retreats up and vanishes)
+                let translateY = -currentScrollY * 0.8;
+
                 heroSection.style.opacity = opacity;
-                
-                // If completely faded out, hide it from pointer events just in case
+
                 if (opacity === 0) {
                     heroSection.style.pointerEvents = "none";
                 } else {
                     heroSection.style.pointerEvents = "auto";
                 }
-                
-                heroSection.style.transform = `translateY(${translateY}px) scale(${scale})`;
+
+                heroSection.style.transform = `translate3d(0, ${translateY}px, 0) scale(${scale})`;
+            }
+
+            // Continue loop if not yet fully converged
+            if (Math.abs(targetScrollY - currentScrollY) > 0.05) {
+                requestAnimationFrame(updateParallax);
+            } else {
+                currentScrollY = targetScrollY;
+                ticking = false;
+            }
+        }
+
+        window.addEventListener("scroll", () => {
+            targetScrollY = window.scrollY;
+            if (!ticking) {
+                ticking = true;
+                requestAnimationFrame(updateParallax);
             }
         }, { passive: true });
     }

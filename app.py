@@ -64,44 +64,49 @@ def process_single_image(image_bytes, filename, request_args, save_prefix=None):
     original_shape = image.shape
     
     # Config parameters
-    imgsz = int(request_args.get("imgsz", 1280))
-    iou_thresh = float(request_args.get("iou_threshold", 0.75))
-    conf_thresh = float(request_args.get("conf_threshold", 0.15))
+    imgsz = int(request_args.get("imgsz", 2560))
+    iou_thresh = float(request_args.get("iou_threshold", 0.50))
+    conf_thresh = float(request_args.get("conf_threshold", 0.25))
     use_tiled = request_args.get("tiled", "true").lower() == "true"
     tile_size = int(request_args.get("tile_size", 640))
     tile_overlap = int(request_args.get("tile_overlap", 128))
     use_tta = request_args.get("tta", "false").lower() == "true"
     
-    imgsz = int(request_args.get("imgsz", 1280))
-    if imgsz not in [1280, 1536, 1920]:
-        imgsz = 1280
+    # Remove strict imgsz bounds to allow massive resolutions for background detection
+    imgsz = int(request_args.get("imgsz", 2560))
         
     low_class_thresh = float(request_args.get("low_threshold", 15.0))
     high_class_thresh = float(request_args.get("high_threshold", 45.0))
     
+    use_recovery = request_args.get("deep_search", "false").lower() == "true"
+    is_sharpen = request_args.get("sharpen", "false").lower() == "true"
+
     # Preprocessing
-    preprocessed_img, scale_factor = adaptive_preprocess(image, target_size=imgsz)
+    preprocessed_img, scale_factor = adaptive_preprocess(image, target_size=imgsz, is_crowded=is_sharpen)
     yolo_input = (preprocessed_img * 255.0).astype(np.uint8)
     
     # Detection
     if detector is None:
         raise RuntimeError("Detector not initialized")
         
-    if use_tiled:
-        raw_detections, consistency_score = detector.detect_tiled(
-            yolo_input, 
-            tile_size=tile_size, 
-            overlap=tile_overlap, 
-            conf_threshold=conf_thresh
-        )
-    else:
-        raw_detections = detector.detect_standard(
-            yolo_input, 
-            imgsz=imgsz,
-            conf_threshold=conf_thresh, 
-            use_tta=use_tta
-        )
-        consistency_score = 1.0
+    reliability_conf_thresh = float(request_args.get("reliability_conf_threshold", 0.65))
+    reliability_consistency_thresh = float(request_args.get("reliability_consistency_threshold", 0.80))
+    reliability_small_ratio_thresh = float(request_args.get("reliability_small_ratio_threshold", 0.20))
+
+    raw_detections, consistency_score = detector.detect_hierarchical(
+        yolo_input, 
+        imgsz=imgsz,
+        conf_threshold=conf_thresh, 
+        use_tiled=use_tiled,
+        tile_size=tile_size,
+        tile_overlap=tile_overlap,
+        use_tta=use_tta,
+        use_recovery=use_recovery,
+        reliability_conf_threshold=reliability_conf_thresh,
+        reliability_consistency_threshold=reliability_consistency_thresh,
+        reliability_small_ratio_threshold=reliability_small_ratio_thresh,
+        iou_threshold=iou_thresh
+    )
         
     # Scale coordinates back
     scaled_raw_detections = []

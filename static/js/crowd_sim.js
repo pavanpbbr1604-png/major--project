@@ -236,34 +236,152 @@ document.addEventListener("DOMContentLoaded", () => {
             ctx.fill();
         }
 
-        // Draw Traffic Light Pole (darker outline)
-        const tx = trafficLight.x;
-        const ty = trafficLight.y;
+        // Draw Multi-Camera CCTV Security Tower (Matching user reference image & theme)
+        const cx = canvas.width * 0.88; // Placed at exact blue sketch position
+        const cy = canvas.height - 270;
 
+        ctx.save();
+        ctx.strokeStyle = "#0f172a";
+        ctx.fillStyle = "#ffffff";
+        ctx.lineWidth = 2;
+        ctx.lineJoin = "round";
+        ctx.lineCap = "round";
+
+        // 1. Scanning Cone Beams (AI Crowd Surveillance Theme)
+        const pulseOpacity = 0.08 + Math.sin(Date.now() * 0.003) * 0.03;
+        
+        ctx.fillStyle = `rgba(37, 99, 235, ${pulseOpacity})`;
+        // Beam from Top Left Camera
         ctx.beginPath();
-        // Vertical post
-        ctx.moveTo(tx, canvas.height);
-        ctx.lineTo(tx, ty);
-        // Arm
-        ctx.lineTo(tx - 35, ty + 10);
-        ctx.stroke();
+        ctx.moveTo(cx - 30, cy - 25);
+        ctx.lineTo(cx - 200, canvas.height);
+        ctx.lineTo(cx - 50, canvas.height);
+        ctx.closePath();
+        ctx.fill();
 
-        // Traffic Light box outline
+        // Beam from Top Right Camera
+        ctx.beginPath();
+        ctx.moveTo(cx + 45, cy + 5);
+        ctx.lineTo(cx + 80, canvas.height);
+        ctx.lineTo(cx + 240, canvas.height);
+        ctx.closePath();
+        ctx.fill();
+
+        // Beam from Middle Right Camera
+        ctx.beginPath();
+        ctx.moveTo(cx + 35, cy + 65);
+        ctx.lineTo(cx - 30, canvas.height);
+        ctx.lineTo(cx + 140, canvas.height);
+        ctx.closePath();
+        ctx.fill();
+
+        // 2. Main Vertical Pole
         ctx.fillStyle = "#ffffff";
         ctx.beginPath();
-        ctx.rect(tx - 45, ty + 10, 20, 50);
+        ctx.rect(cx - 6, cy - 10, 12, canvas.height - (cy - 10));
         ctx.fill();
         ctx.stroke();
 
-        // 3 light indicators (Red light is lit up!)
-        const lightColors = ["rgba(239, 68, 68, 0.8)", "rgba(156, 163, 175, 0.2)", "rgba(16, 185, 129, 0.2)"];
-        lightColors.forEach((color, idx) => {
-            ctx.fillStyle = color;
+        // 3D side line on pole
+        ctx.beginPath();
+        ctx.moveTo(cx + 6, cy - 10);
+        ctx.lineTo(cx + 10, cy - 5);
+        ctx.lineTo(cx + 10, canvas.height);
+        ctx.stroke();
+
+        // Pole Top Cap
+        ctx.fillStyle = "#0f172a";
+        ctx.beginPath();
+        ctx.rect(cx - 8, cy - 16, 16, 6);
+        ctx.fill();
+        ctx.stroke();
+
+        // Helper function to draw a CCTV Security Camera matching reference image
+        function drawCamera(camX, camY, angleDeg, scale = 1.0) {
+            ctx.save();
+            ctx.translate(camX, camY);
+            ctx.rotate((angleDeg * Math.PI) / 180);
+            ctx.scale(scale, scale);
+
+            // Mounting Plate on pole
+            ctx.fillStyle = "#0f172a";
+            ctx.fillRect(-2, -12, 6, 24);
+
+            // Mounting Bracket Arm
+            ctx.fillStyle = "#ffffff";
             ctx.beginPath();
-            ctx.arc(tx - 35, ty + 20 + (idx * 14), 4, 0, Math.PI * 2);
+            ctx.moveTo(0, -6);
+            ctx.lineTo(24, -14);
+            ctx.lineTo(28, -6);
+            ctx.lineTo(24, 6);
+            ctx.lineTo(0, 6);
+            ctx.closePath();
             ctx.fill();
             ctx.stroke();
-        });
+
+            // Cable wire loop
+            ctx.beginPath();
+            ctx.moveTo(4, 6);
+            ctx.quadraticCurveTo(12, 18, 26, 12);
+            ctx.stroke();
+
+            // Camera Housing Box
+            ctx.fillStyle = "#ffffff";
+            ctx.beginPath();
+            ctx.rect(26, -16, 42, 26);
+            ctx.fill();
+            ctx.stroke();
+
+            // Sunshield / Top Hood
+            ctx.fillStyle = "#0f172a";
+            ctx.beginPath();
+            ctx.moveTo(24, -20);
+            ctx.lineTo(72, -20);
+            ctx.lineTo(68, -16);
+            ctx.lineTo(26, -16);
+            ctx.closePath();
+            ctx.fill();
+            ctx.stroke();
+
+            // Front Lens Bezel
+            ctx.fillStyle = "#0f172a";
+            ctx.fillRect(68, -14, 5, 22);
+
+            // Inner Lens Circle
+            ctx.fillStyle = "#ffffff";
+            ctx.beginPath();
+            ctx.arc(70, -3, 6, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.stroke();
+
+            ctx.fillStyle = "#0f172a";
+            ctx.beginPath();
+            ctx.arc(70, -3, 3, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Glowing lens core dot (AI camera indicator)
+            ctx.fillStyle = "#2563eb";
+            ctx.beginPath();
+            ctx.arc(70, -3, 1.5, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Red LED Status Indicator light on side
+            ctx.fillStyle = (Math.floor(Date.now() / 600) % 2 === 0) ? "#ef4444" : "#991b1b";
+            ctx.beginPath();
+            ctx.arc(32, -10, 2, 0, Math.PI * 2);
+            ctx.fill();
+
+            ctx.restore();
+        }
+
+        // Camera 1: Top Left (pointing left & down)
+        drawCamera(cx - 6, cy - 5, -155, 0.95);
+
+        // Camera 2: Top Right (pointing right & down)
+        drawCamera(cx + 6, cy + 15, 18, 0.95);
+
+        // Camera 3: Middle Right (pointing down & right)
+        drawCamera(cx + 6, cy + 70, 32, 0.88);
 
         ctx.restore();
     }

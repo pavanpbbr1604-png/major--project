@@ -171,9 +171,11 @@
                         <div class="form-group">
                             <label class="form-label" for="param-imgsz">Inference Resolution (imgsz)</label>
                             <select class="form-select" id="param-imgsz">
-                                <option value="1280" selected>1280px (Standard)</option>
+                                <option value="1280">1280px (Standard)</option>
                                 <option value="1536">1536px (High accuracy)</option>
                                 <option value="1920">1920px (Maximum detail)</option>
+                                <option value="2560" selected>2560px (Extreme - Default)</option>
+                                <option value="3200">3200px (Ultimate - Deep Background)</option>
                             </select>
                         </div>
 
@@ -199,11 +201,39 @@
                         </div>
 
                         <div class="form-group">
+                            <label class="form-label" for="param-deep-search">Deep Search (Iterative ROI Recovery)</label>
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="param-deep-search">
+                                <label for="param-deep-search" class="switch-slider"></label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="param-sharpen">Sharpen Input Image</label>
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="param-sharpen">
+                                <label for="param-sharpen" class="switch-slider"></label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
                             <label class="form-label" for="param-tta">Test Time Augmentation (TTA)</label>
                             <div class="toggle-switch">
                                 <input type="checkbox" id="param-tta" checked>
                                 <label for="param-tta" class="switch-slider"></label>
                             </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="param-conf-threshold" id="lbl-conf-threshold">Confidence Threshold</label>
+                            <input type="range" class="form-slider" id="param-conf-threshold" min="0.05" max="0.90" step="0.05" value="0.25">
+                            <div class="slider-val" id="val-conf-threshold">0.25 (Standard)</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="param-iou-threshold" id="lbl-iou-threshold">IoU (Overlap) Threshold</label>
+                            <input type="range" class="form-slider" id="param-iou-threshold" min="0.10" max="0.95" step="0.05" value="0.50">
+                            <div class="slider-val" id="val-iou-threshold">0.50 (Standard)</div>
                         </div>
 
                         <div class="form-group">

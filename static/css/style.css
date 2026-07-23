@@ -21,6 +21,9 @@
 }
 
 /* Reset & Base Styles */
+html {
+    scroll-behavior: smooth;
+}
 * {
     box-sizing: border-box;
     margin: 0;
@@ -32,7 +35,7 @@
     position: fixed;
     bottom: 0;
     left: 0;
-    width: 100vw;
+    width: 100%;
     height: 400px;
     z-index: -3; /* Placed behind main cards, above grid background */
     pointer-events: none;
@@ -75,13 +78,13 @@
 
 /* Page Load Transitions */
 body {
+    zoom: 0.9; /* Slight zoom out by default */
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     background-color: #ffffff;
     color: #1e293b;
     line-height: 1.5;
     padding-top: 110px;
     -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
     position: relative;
     min-height: 100vh;
     opacity: 0;
@@ -121,7 +124,7 @@ body {
     left: 0;
     right: 0;
     margin-inline: auto;
-    width: min(94vw, 1100px);
+    width: min(95%, 1380px);
     min-height: 66px;
     background-color: #ffffff;
     border: 3px solid #0f172a;
@@ -296,6 +299,7 @@ body {
 .hero-section {
     text-align: center;
     margin-bottom: 32px;
+    will-change: transform, opacity;
 }
 
 .hero-title {
@@ -1413,6 +1417,16 @@ input:checked + .switch-slider:before {
     outline: none;
 }
 
+/* Fix dropdown options visibility */
+.centered-dashboard-container .upload-card select.form-select option,
+select.form-select option,
+select option,
+option {
+    background-color: #ffffff !important;
+    color: #0f172a !important;
+    padding: 8px 12px;
+}
+
 /* Sketched mini-dropzones */
 .centered-dashboard-container .upload-card .dropzone-mini {
     border: 2px dashed #0f172a;
@@ -1469,9 +1483,22 @@ input:checked + .switch-slider:before {
     background-color: #0f172a;
 }
 
+.centered-dashboard-container .upload-card .toggle-switch input:checked + .switch-slider:before {
+    background-color: #ffffff;
+    transform: translateX(20px);
+}
+
 .centered-dashboard-container .upload-card .switch-slider {
     background-color: rgba(15, 23, 42, 0.15);
     border: 2px solid #0f172a;
+}
+
+.centered-dashboard-container .upload-card .switch-slider:before {
+    height: 14px;
+    width: 14px;
+    left: 3px;
+    bottom: 3px;
+    background-color: #0f172a;
 }
 
 .centered-dashboard-container .upload-card .slider-val {
@@ -1543,7 +1570,7 @@ input:checked + .switch-slider:before {
         transform: translateY(0);
     }
     100% {
-        left: 110vw;
+        left: 110%;
         transform: translateY(-80px); /* Ascends slightly as it crosses */
     }
 }

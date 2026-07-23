@@ -11,7 +11,9 @@ def resize_image(image: np.ndarray, target_size: int = 1280) -> tuple[np.ndarray
     scale = target_size / max(h, w)
     new_w = int(w * scale)
     new_h = int(h * scale)
-    resized = cv2.resize(image, (new_w, new_h), interpolation=cv2.INTER_AREA)
+    
+    interp = cv2.INTER_CUBIC if scale > 1.0 else cv2.INTER_AREA
+    resized = cv2.resize(image, (new_w, new_h), interpolation=interp)
     return resized, scale
 
 def noise_reduction(image: np.ndarray) -> np.ndarray:
@@ -65,14 +67,14 @@ def normalize_image(image: np.ndarray) -> np.ndarray:
     """
     return image.astype(np.float32) / 255.0
 
-def adaptive_preprocess(image: np.ndarray, target_size: int = 1280) -> tuple[np.ndarray, float]:
+def adaptive_preprocess(image: np.ndarray, target_size: int = 1280, is_crowded: bool = True) -> tuple[np.ndarray, float]:
     """
     Full adaptive preprocessing pipeline optimizing images for crowded scenarios.
     Steps:
       1. Noise reduction (Edge preserving Bilateral filter)
       2. Brightness normalization
       3. Contrast enhancement via CLAHE
-      4. Image sharpening to boost high-frequency details
+      4. Image sharpening (only if is_crowded is True to avoid ringing noise in simple scenes)
       5. Resizing to target high-resolution
       6. Normalization (to 0.0 - 1.0)
     """
@@ -82,11 +84,12 @@ def adaptive_preprocess(image: np.ndarray, target_size: int = 1280) -> tuple[np.
     # 2. Brightness normalization
     img_processed = normalize_brightness(img_processed)
     
-    # 3. Contrast enhancement
-    img_processed = contrast_enhancement(img_processed)
+    # 3. Contrast enhancement (disabled by default to prevent structural false positives)
+    # img_processed = contrast_enhancement(img_processed)
     
-    # 4. Sharpening
-    img_processed = sharpen_image(img_processed)
+    # 4. Sharpening (conditionally applied to prevent artifact inflation in sparse scenes)
+    if is_crowded:
+        img_processed = sharpen_image(img_processed)
     
     # 5. Resize
     resized_img, scale = resize_image(img_processed, target_size)
