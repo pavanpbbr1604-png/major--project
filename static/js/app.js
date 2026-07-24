@@ -537,7 +537,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Populate SQL Logs Analysis History
     function loadHistoryTable() {
         const tbody = document.getElementById("history-table-body");
-        tbody.innerHTML = '<tr><td colspan="9" style="text-align:center">Fetching sqlite history logs...</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="10" style="text-align:center">Fetching sqlite history logs...</td></tr>';
 
         fetch("/history")
         .then(response => response.json())
@@ -545,21 +545,32 @@ document.addEventListener("DOMContentLoaded", () => {
             const historyData = data.data || data; // handle wrapped response
             tbody.innerHTML = "";
             if (!historyData || historyData.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="9" style="text-align:center; padding: 30px; font-weight: bold; color: var(--text-muted)">No analysis runs stored in DB yet.</td></tr>';
+                tbody.innerHTML = '<tr><td colspan="10" style="text-align:center; padding: 30px; font-weight: bold; color: var(--text-muted)">No analysis runs stored in DB yet.</td></tr>';
                 return;
             }
 
             historyData.forEach(row => {
                 const tr = document.createElement("tr");
                 const timeString = new Date(row.timestamp).toLocaleString();
-                const imageCount = row.uploaded_image_names.length;
+                const imageCount = row.uploaded_image_names ? row.uploaded_image_names.length : 1;
                 
+                // Extract processed image thumbnail URL from per_image_details
+                let thumbUrl = "";
+                if (row.per_image_details && row.per_image_details.views && row.per_image_details.views.length > 0) {
+                    thumbUrl = row.per_image_details.views[0].processed_url || row.per_image_details.views[0].original_url || "";
+                }
+                
+                const thumbHtml = thumbUrl 
+                    ? `<img src="${thumbUrl}" class="history-thumb-img" title="Click to zoom annotated processed image with detections" data-url="${thumbUrl}">`
+                    : `<span style="color:var(--text-muted); font-size:11px">N/A</span>`;
+
                 tr.innerHTML = `
-                    <td style="font-family:monospace; font-size:11px">${row.analysis_id.substring(0,8)}...</td>
+                    <td style="font-family:monospace; font-size:11px">${row.analysis_id ? row.analysis_id.substring(0,8) : 'N/A'}...</td>
                     <td>${timeString}</td>
-                    <td>${row.uploaded_image_names.join(", ")} (${imageCount} view${imageCount > 1 ? 's' : ''})</td>
+                    <td>${thumbHtml}</td>
+                    <td>${row.uploaded_image_names ? row.uploaded_image_names.join(", ") : 'Image'} (${imageCount} view${imageCount > 1 ? 's' : ''})</td>
                     <td style="font-weight:600">${row.count}</td>
-                    <td>${row.density.toFixed(2)}%</td>
+                    <td>${row.density ? row.density.toFixed(2) : 0}%</td>
                     <td><span class="badge ${row.crowd_level === 'Undercrowded' ? 'badge-success' : row.crowd_level === 'Moderate' ? 'badge-warning' : 'badge-danger'}">${row.crowd_level}</span></td>
                     <td>${(row.reliability_score * 100).toFixed(0)}%</td>
                     <td><button class="view-record-btn" data-id="${row.analysis_id}">View</button></td>
@@ -567,6 +578,17 @@ document.addEventListener("DOMContentLoaded", () => {
                 `;
                 
                 tbody.appendChild(tr);
+            });
+
+            // Add click handlers for history image thumbnail preview modal
+            document.querySelectorAll(".history-thumb-img").forEach(img => {
+                img.addEventListener("click", () => {
+                    const url = img.getAttribute("data-url");
+                    if (url) {
+                        modal.classList.remove("hidden");
+                        modalImg.src = url;
+                    }
+                });
             });
 
             // Add click handlers for row views
@@ -586,7 +608,7 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         })
         .catch(err => {
-            tbody.innerHTML = `<tr><td colspan="9" style="text-align:center; color:var(--status-danger)">History Fetch Failed: ${err.message}</td></tr>`;
+            tbody.innerHTML = `<tr><td colspan="10" style="text-align:center; color:var(--status-danger)">History Fetch Failed: ${err.message}</td></tr>`;
         });
     }
 
@@ -654,26 +676,60 @@ document.addEventListener("DOMContentLoaded", () => {
         const record = rawData.find(r => r.analysis_id === analysisId);
         if (!record) return;
 
-        // Switch to upload tab
+        // Switch to main dashboard tab
         navButtons[0].click();
 
-        // Render mock historic representation structure
+        // Render historic representation structure
         const resultsDisplay = document.getElementById("results-display");
         resultsDisplay.classList.remove("hidden");
 
         document.getElementById("res-count").textContent = record.count;
-        document.getElementById("res-density").textContent = `${record.density.toFixed(2)}%`;
+        document.getElementById("res-density").textContent = `${record.density ? record.density.toFixed(2) : 0}%`;
         document.getElementById("res-level").textContent = record.crowd_level;
         document.getElementById("res-reliability-score").textContent = `${(record.reliability_score * 100).toFixed(0)}%`;
 
-        const relText = record.fusion_count ? "Consensus" : "Exact/Fallback Match";
+        const relText = record.fusion_count ? "Consensus Fusion" : "Direct Analysis";
         const reliabilityBadge = document.getElementById("badge-reliability");
         reliabilityBadge.textContent = relText;
         reliabilityBadge.className = "badge badge-neutral";
 
-        drawDensityGauge(record.density);
+        drawDensityGauge(record.density || 0);
 
-        // Hide multi detail view card if it was single, show if multi
+        // Restore processed and original images from per_image_details
+        const views = record.per_image_details && record.per_image_details.views ? record.per_image_details.views : [];
+        const viewTabRow = document.getElementById("view-tab-row");
+
+        if (views.length > 0) {
+            // Display first view images as default
+            document.getElementById("img-original").src = views[0].original_url || "";
+            document.getElementById("img-processed").src = views[0].processed_url || "";
+
+            if (views.length > 1) {
+                // Multi-perspective view tab switcher
+                viewTabRow.classList.remove("hidden");
+                viewTabRow.innerHTML = "";
+                views.forEach((v, idx) => {
+                    const btn = document.createElement("button");
+                    btn.className = `view-select-btn ${idx === 0 ? 'active' : ''}`;
+                    btn.textContent = `View ${idx + 1} (${v.counting ? v.counting.total_count : v.count || 0} People)`;
+                    btn.addEventListener("click", () => {
+                        document.querySelectorAll(".view-select-btn").forEach(b => b.classList.remove("active"));
+                        btn.classList.add("active");
+                        document.getElementById("img-original").src = v.original_url || "";
+                        document.getElementById("img-processed").src = v.processed_url || "";
+                    });
+                    viewTabRow.appendChild(btn);
+                });
+            } else {
+                viewTabRow.classList.add("hidden");
+            }
+        } else {
+            document.getElementById("img-original").src = "";
+            document.getElementById("img-processed").src = "";
+            viewTabRow.classList.add("hidden");
+        }
+
+        // Render multi detail view breakdown card if available
         const detailsCard = document.getElementById("fusion-breakdown-card");
         if (record.fusion_count && record.per_image_details && record.per_image_details.fusion) {
             detailsCard.classList.remove("hidden");
@@ -683,10 +739,12 @@ document.addEventListener("DOMContentLoaded", () => {
             record.per_image_details.views.forEach((view, index) => {
                 const viewCard = document.createElement("div");
                 viewCard.className = "fusion-view-card";
+                const vCount = view.counting ? view.counting.total_count : view.count || 0;
+                const vDens = view.density ? (view.density.density_percentage || view.density) : 0;
                 viewCard.innerHTML = `
                     <span class="fusion-view-title">${view.filename || `View ${index+1}`}</span>
-                    <div class="fusion-view-value">${view.counting.total_count} People</div>
-                    <div style="font-size:11px;color:var(--text-muted)">Density: ${view.density.density_percentage.toFixed(1)}%</div>
+                    <div class="fusion-view-value">${vCount} People</div>
+                    <div style="font-size:11px;color:var(--text-muted)">Density: ${vDens.toFixed ? vDens.toFixed(1) : vDens}%</div>
                 `;
                 container.appendChild(viewCard);
             });
@@ -694,11 +752,6 @@ document.addEventListener("DOMContentLoaded", () => {
         } else {
             detailsCard.classList.add("hidden");
         }
-
-        // Reset image containers to placeholders during historical views
-        document.getElementById("img-original").src = "";
-        document.getElementById("img-processed").src = "";
-        document.getElementById("view-tab-row").classList.add("hidden");
     }
 
     // Mobile Menu Toggle handler
