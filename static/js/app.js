@@ -534,6 +534,37 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
+    function resolveImageUrl(rawUrl, analysisId, isProcessed = true, viewIdx = 1) {
+        if (rawUrl && typeof rawUrl === "string" && rawUrl.trim() !== "") {
+            let clean = rawUrl.trim();
+            return clean.startsWith("/") ? clean : "/" + clean;
+        }
+        const suffix = isProcessed ? "processed.jpg" : "original.jpg";
+        if (viewIdx > 1) {
+            return `/static/uploads/${analysisId}_view${viewIdx}_${suffix}`;
+        }
+        return `/static/uploads/${analysisId}_${suffix}`;
+    }
+
+    function setSafeImage(imgElementId, url, fallbackText = "Image Not Available") {
+        const img = document.getElementById(imgElementId);
+        if (!img) return;
+        
+        const svgPlaceholder = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='400' viewBox='0 0 600 400'%3E%3Crect width='600' height='400' fill='%230f172a' rx='12'/%3E%3Cpath d='M250 180 L280 220 L310 190 L350 240 L230 240 Z' fill='%23334155'/%3E%3Ccircle cx='320' cy='160' r='18' fill='%23475569'/%3E%3Ctext x='50%25' y='75%25' dominant-baseline='middle' text-anchor='middle' fill='%2394a3b8' font-family='sans-serif' font-size='15' font-weight='600'%3E" + encodeURIComponent(fallbackText) + "%3C/text%3E%3C/svg%3E";
+
+        if (!url || url.trim() === "") {
+            img.src = svgPlaceholder;
+            return;
+        }
+
+        img.onerror = () => {
+            img.onerror = null;
+            img.src = svgPlaceholder;
+        };
+
+        img.src = url;
+    }
+
     // Populate SQL Logs Analysis History
     function loadHistoryTable() {
         const tbody = document.getElementById("history-table-body");
@@ -557,12 +588,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 // Extract processed image thumbnail URL from per_image_details
                 let thumbUrl = "";
                 if (row.per_image_details && row.per_image_details.views && row.per_image_details.views.length > 0) {
-                    thumbUrl = row.per_image_details.views[0].processed_url || row.per_image_details.views[0].original_url || "";
+                    thumbUrl = resolveImageUrl(row.per_image_details.views[0].processed_url || row.per_image_details.views[0].original_url, row.analysis_id, true, 1);
+                } else {
+                    thumbUrl = resolveImageUrl(null, row.analysis_id, true, 1);
                 }
                 
-                const thumbHtml = thumbUrl 
-                    ? `<img src="${thumbUrl}" class="history-thumb-img" title="Click to zoom annotated processed image with detections" data-url="${thumbUrl}">`
-                    : `<span style="color:var(--text-muted); font-size:11px">N/A</span>`;
+                const thumbHtml = `<img src="${thumbUrl}" class="history-thumb-img" title="Click to zoom annotated processed image with detections" data-url="${thumbUrl}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'100\' height=\'70\' viewBox=\'0 0 100 70\'%3E%3Crect width=\'100\' height=\'70\' fill=\'%230f172a\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%2394a3b8\' font-size=\'10\'%3EN/A%3C/text%3E%3C/svg%3E'">`;
 
                 tr.innerHTML = `
                     <td style="font-family:monospace; font-size:11px">${row.analysis_id ? row.analysis_id.substring(0,8) : 'N/A'}...</td>
@@ -700,9 +731,11 @@ document.addEventListener("DOMContentLoaded", () => {
         const viewTabRow = document.getElementById("view-tab-row");
 
         if (views.length > 0) {
-            // Display first view images as default
-            document.getElementById("img-original").src = views[0].original_url || "";
-            document.getElementById("img-processed").src = views[0].processed_url || "";
+            const firstOrigUrl = resolveImageUrl(views[0].original_url, record.analysis_id, false, 1);
+            const firstProcUrl = resolveImageUrl(views[0].processed_url, record.analysis_id, true, 1);
+
+            setSafeImage("img-original", firstOrigUrl, "Original Image Unavailable");
+            setSafeImage("img-processed", firstProcUrl, "Processed Detections Unavailable");
 
             if (views.length > 1) {
                 // Multi-perspective view tab switcher
@@ -715,8 +748,10 @@ document.addEventListener("DOMContentLoaded", () => {
                     btn.addEventListener("click", () => {
                         document.querySelectorAll(".view-select-btn").forEach(b => b.classList.remove("active"));
                         btn.classList.add("active");
-                        document.getElementById("img-original").src = v.original_url || "";
-                        document.getElementById("img-processed").src = v.processed_url || "";
+                        const origUrl = resolveImageUrl(v.original_url, record.analysis_id, false, idx + 1);
+                        const procUrl = resolveImageUrl(v.processed_url, record.analysis_id, true, idx + 1);
+                        setSafeImage("img-original", origUrl, `View ${idx + 1} Original Unavailable`);
+                        setSafeImage("img-processed", procUrl, `View ${idx + 1} Detections Unavailable`);
                     });
                     viewTabRow.appendChild(btn);
                 });
@@ -724,9 +759,28 @@ document.addEventListener("DOMContentLoaded", () => {
                 viewTabRow.classList.add("hidden");
             }
         } else {
-            document.getElementById("img-original").src = "";
-            document.getElementById("img-processed").src = "";
+            // Fallback convention URLs if views array missing
+            const origUrl = resolveImageUrl(null, record.analysis_id, false, 1);
+            const procUrl = resolveImageUrl(null, record.analysis_id, true, 1);
+            setSafeImage("img-original", origUrl, "Original Image File Missing");
+            setSafeImage("img-processed", procUrl, "Processed Detections File Missing");
             viewTabRow.classList.add("hidden");
+        }
+
+        // Populate System Analysis Insights
+        const firstView = views.length > 0 ? views[0] : null;
+        const rel = (firstView && firstView.reliability) ? firstView.reliability : {};
+
+        document.getElementById("val-avg-conf").textContent = rel.avg_confidence ? `${(rel.avg_confidence * 100).toFixed(1)}%` : `${(record.reliability_score * 100).toFixed(0)}%`;
+        document.getElementById("val-small-ratio").textContent = rel.small_object_ratio !== undefined ? `${(rel.small_object_ratio * 100).toFixed(1)}%` : "N/A";
+        document.getElementById("val-occlusion").textContent = rel.occlusion_indicator || (record.fusion_count ? "Multi-View Consensus" : "Standard Density");
+        document.getElementById("val-consistency").textContent = rel.consistency_score ? `${(rel.consistency_score * 100).toFixed(0)}%` : `${(record.reliability_score * 100).toFixed(0)}%`;
+        
+        const explanationBox = document.getElementById("res-explanation");
+        if (rel.explanation) {
+            explanationBox.textContent = rel.explanation;
+        } else {
+            explanationBox.textContent = `Historical record saved on ${new Date(record.timestamp).toLocaleString()}. Count: ${record.count} people, Density: ${record.density ? record.density.toFixed(1) : 0}%.`;
         }
 
         // Render multi detail view breakdown card if available
