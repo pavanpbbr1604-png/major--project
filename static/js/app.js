@@ -1,7 +1,20 @@
-document.addEventListener("DOMContentLoaded", () => {
-    // Navigation & Tab Switching
-    const navButtons = document.querySelectorAll(".nav-btn");
-    const tabPanes = document.querySelectorAll(".tab-pane");
+    function exitHistoryMode() {
+        const uploadPanelCard = document.getElementById("upload-panel-card");
+        if (uploadPanelCard) uploadPanelCard.classList.remove("hidden");
+        const hero = document.getElementById("hero-section");
+        if (hero) hero.classList.remove("hidden");
+        const banner = document.getElementById("history-view-banner");
+        if (banner) banner.classList.add("hidden");
+    }
+
+    const exitHistoryBtn = document.getElementById("btn-exit-history-mode");
+    if (exitHistoryBtn) {
+        exitHistoryBtn.addEventListener("click", () => {
+            exitHistoryMode();
+            const uploadPanelCard = document.getElementById("upload-panel-card");
+            if (uploadPanelCard) uploadPanelCard.scrollIntoView({ behavior: "smooth" });
+        });
+    }
 
     navButtons.forEach(btn => {
         btn.addEventListener("click", () => {
@@ -13,7 +26,9 @@ document.addEventListener("DOMContentLoaded", () => {
             btn.classList.add("active");
             document.getElementById(targetTab).classList.add("active");
 
-            if (targetTab === "tab-history") {
+            if (targetTab === "tab-upload") {
+                exitHistoryMode();
+            } else if (targetTab === "tab-history") {
                 loadHistoryTable();
             }
         });
@@ -707,12 +722,39 @@ document.addEventListener("DOMContentLoaded", () => {
         const record = rawData.find(r => r.analysis_id === analysisId);
         if (!record) return;
 
-        // Switch to main dashboard tab
-        navButtons[0].click();
+        // Hide upload dropzone card & hero section while viewing history
+        const uploadPanelCard = document.getElementById("upload-panel-card");
+        if (uploadPanelCard) uploadPanelCard.classList.add("hidden");
+        const heroSection = document.getElementById("hero-section");
+        if (heroSection) heroSection.classList.add("hidden");
+
+        // Show historical record banner
+        const historyBanner = document.getElementById("history-view-banner");
+        if (historyBanner) {
+            historyBanner.classList.remove("hidden");
+            const title = document.getElementById("history-banner-title");
+            if (title) title.textContent = `Viewing Historical Record: ${record.analysis_id ? record.analysis_id.substring(0, 8) : 'N/A'}...`;
+            const subtitle = document.getElementById("history-banner-subtitle");
+            const recTime = new Date(record.timestamp).toLocaleString();
+            if (subtitle) subtitle.textContent = `Count: ${record.count} people | Density Level: ${record.crowd_level} | Recorded: ${recTime}`;
+        }
+
+        // Switch active tab to tab-upload (dashboard pane)
+        navButtons.forEach(b => b.classList.remove("active"));
+        tabPanes.forEach(pane => pane.classList.remove("active"));
+        navButtons[0].classList.add("active");
+        document.getElementById("tab-upload").classList.add("active");
 
         // Render historic representation structure
         const resultsDisplay = document.getElementById("results-display");
         resultsDisplay.classList.remove("hidden");
+
+        // Scroll smoothly to top of dashboard results
+        if (historyBanner) {
+            historyBanner.scrollIntoView({ behavior: "smooth" });
+        } else {
+            resultsDisplay.scrollIntoView({ behavior: "smooth" });
+        }
 
         document.getElementById("res-count").textContent = record.count;
         document.getElementById("res-density").textContent = `${record.density ? record.density.toFixed(2) : 0}%`;
