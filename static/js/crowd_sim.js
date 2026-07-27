@@ -36,16 +36,16 @@ document.addEventListener("DOMContentLoaded", () => {
     // Resize handling
     function resizeCanvas() {
         canvas.width = window.innerWidth;
-        // Keep canvas size consistent (height of 400px on screen)
-        canvas.height = 400; 
+        // Increase canvas height to 500px for generous bottom clearance
+        canvas.height = 500; 
     }
     window.addEventListener("resize", () => {
         resizeCanvas();
         if (isLoaded) {
             initCityBackground();
-            // Re-align or reset coordinates on resize
+            // Re-align y coordinates on resize
             peeps.forEach(p => {
-                p.y = canvas.height - (p.height * p.scale) + 75;
+                p.y = canvas.height - (p.height * p.scale) - 10;
             });
         }
     });
@@ -393,8 +393,8 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         reset(initial = false) {
-            // Setup larger size scales (0.35 to 0.75) to show full bodies clearly
-            this.scale = Math.random() * 0.4 + 0.35; 
+            // Scale range (0.32 to 0.62) for optimal character proportion
+            this.scale = Math.random() * 0.3 + 0.32; 
             this.width = spriteWidth;
             this.height = spriteHeight;
 
@@ -413,8 +413,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 this.x = this.direction === 1 ? -260 : canvas.width + 260;
             }
 
-            // Lock to floor (base y-coord pushed 75px down to sink sprites and hide bottom cut lines)
-            this.y = canvas.height - (this.height * this.scale) + 75;
+            // Lock to floor cleanly above bottom edge (-10px to -30px margin offset)
+            this.y = canvas.height - (this.height * this.scale) - 10 - (Math.random() * 20);
 
             // Character index (row in sprite sheet)
             this.peepIndex = Math.floor(Math.random() * rows);

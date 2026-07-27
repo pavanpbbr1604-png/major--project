@@ -36,7 +36,7 @@ html {
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 400px;
+    height: 500px;
     z-index: -3; /* Placed behind main cards, above grid background */
     pointer-events: none;
 }
