@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const tabPanes = document.querySelectorAll(".tab-pane");
 
     function exitHistoryMode() {
+        sessionStorage.removeItem("activeHistoryRecord");
         const uploadPanelCard = document.getElementById("upload-panel-card");
         if (uploadPanelCard) uploadPanelCard.classList.remove("hidden");
         const hero = document.getElementById("hero-section");
@@ -729,6 +730,9 @@ document.addEventListener("DOMContentLoaded", () => {
         const record = rawData.find(r => r.analysis_id === analysisId);
         if (!record) return;
 
+        // Persist history view state so page reload preserves history view mode
+        sessionStorage.setItem("activeHistoryRecord", JSON.stringify({ analysisId: analysisId, sno: sno }));
+
         // Hide upload dropzone card & hero section while viewing history
         const uploadPanelCard = document.getElementById("upload-panel-card");
         if (uploadPanelCard) uploadPanelCard.classList.add("hidden");
@@ -970,35 +974,53 @@ document.addEventListener("DOMContentLoaded", () => {
         }, { passive: true });
     }
 
-    // Restore session data if page refreshed
-    const lastData = sessionStorage.getItem("lastAnalysisData");
-    if (lastData) {
+    // Restore session data or history view state if page refreshed
+    const savedHistoryView = sessionStorage.getItem("activeHistoryRecord");
+    if (savedHistoryView) {
         try {
-            const data = JSON.parse(lastData);
-            const isMulti = JSON.parse(sessionStorage.getItem("lastIsMultiMode") || "false");
-            
-            if (!isMulti) {
-                const preview = document.getElementById("preview-view1");
-                if (preview && data.original_url) {
-                    preview.src = data.original_url;
-                    document.getElementById("label-view1").classList.add("hidden");
-                    document.getElementById("wrapper-view1").classList.remove("hidden");
-                }
-            } else {
-                perspectiveSelect.value = data.perspectives.length;
-                perspectiveSelect.dispatchEvent(new Event("change"));
-                for (let i = 0; i < data.perspectives.length; i++) {
-                    const preview = document.getElementById(`preview-view${i+1}`);
-                    if (preview && data.perspectives[i].original_url) {
-                        preview.src = data.perspectives[i].original_url;
-                        document.getElementById(`label-view${i+1}`).classList.add("hidden");
-                        document.getElementById(`wrapper-view${i+1}`).classList.remove("hidden");
+            const histInfo = JSON.parse(savedHistoryView);
+            fetch("/history")
+                .then(res => res.json())
+                .then(data => {
+                    const historyData = data.data || data;
+                    if (historyData && historyData.length > 0) {
+                        loadHistoricRecord(histInfo.analysisId, historyData, histInfo.sno);
+                    }
+                })
+                .catch(err => console.error("Failed to restore history view on reload", err));
+        } catch (e) {
+            console.error("Error parsing savedHistoryView", e);
+        }
+    } else {
+        const lastData = sessionStorage.getItem("lastAnalysisData");
+        if (lastData) {
+            try {
+                const data = JSON.parse(lastData);
+                const isMulti = JSON.parse(sessionStorage.getItem("lastIsMultiMode") || "false");
+                
+                if (!isMulti) {
+                    const preview = document.getElementById("preview-view1");
+                    if (preview && data.original_url) {
+                        preview.src = data.original_url;
+                        document.getElementById("label-view1").classList.add("hidden");
+                        document.getElementById("wrapper-view1").classList.remove("hidden");
+                    }
+                } else {
+                    perspectiveSelect.value = data.perspectives.length;
+                    perspectiveSelect.dispatchEvent(new Event("change"));
+                    for (let i = 0; i < data.perspectives.length; i++) {
+                        const preview = document.getElementById(`preview-view${i+1}`);
+                        if (preview && data.perspectives[i].original_url) {
+                            preview.src = data.perspectives[i].original_url;
+                            document.getElementById(`label-view${i+1}`).classList.add("hidden");
+                            document.getElementById(`wrapper-view${i+1}`).classList.remove("hidden");
+                        }
                     }
                 }
+                renderResults(data, isMulti);
+            } catch (e) {
+                console.error("Failed to restore session", e);
             }
-            renderResults(data, isMulti);
-        } catch (e) {
-            console.error("Failed to restore session", e);
         }
     }
 });
