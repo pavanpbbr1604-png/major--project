@@ -600,10 +600,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 return;
             }
 
-            historyData.forEach(row => {
+            historyData.forEach((row, index) => {
                 const tr = document.createElement("tr");
                 const timeString = new Date(row.timestamp).toLocaleString();
                 const imageCount = row.uploaded_image_names ? row.uploaded_image_names.length : 1;
+                const sno = index + 1;
                 
                 // Extract processed image thumbnail URL from per_image_details
                 let thumbUrl = "";
@@ -616,7 +617,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 const thumbHtml = `<img src="${thumbUrl}" class="history-thumb-img" title="Click to zoom annotated processed image with detections" data-url="${thumbUrl}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'100\' height=\'70\' viewBox=\'0 0 100 70\'%3E%3Crect width=\'100\' height=\'70\' fill=\'%230f172a\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%2394a3b8\' font-size=\'10\'%3EN/A%3C/text%3E%3C/svg%3E'">`;
 
                 tr.innerHTML = `
-                    <td style="font-family:monospace; font-size:11px">${row.analysis_id ? row.analysis_id.substring(0,8) : 'N/A'}...</td>
+                    <td style="font-weight:700; color:var(--text-main); text-align:center;">#${sno}</td>
                     <td>${timeString}</td>
                     <td>${thumbHtml}</td>
                     <td>${row.uploaded_image_names ? row.uploaded_image_names.join(", ") : 'Image'} (${imageCount} view${imageCount > 1 ? 's' : ''})</td>
@@ -624,7 +625,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     <td>${row.density ? row.density.toFixed(2) : 0}%</td>
                     <td><span class="badge ${row.crowd_level === 'Undercrowded' ? 'badge-success' : row.crowd_level === 'Moderate' ? 'badge-warning' : 'badge-danger'}">${row.crowd_level}</span></td>
                     <td>${(row.reliability_score * 100).toFixed(0)}%</td>
-                    <td><button class="view-record-btn" data-id="${row.analysis_id}">View</button></td>
+                    <td><button class="view-record-btn" data-id="${row.analysis_id}" data-sno="${sno}">View</button></td>
                     <td><button class="delete-record-btn" data-id="${row.analysis_id}" title="Delete Record">🗑️</button></td>
                 `;
                 
@@ -646,7 +647,8 @@ document.addEventListener("DOMContentLoaded", () => {
             document.querySelectorAll(".view-record-btn").forEach(btn => {
                 btn.addEventListener("click", () => {
                     const id = btn.getAttribute("data-id");
-                    loadHistoricRecord(id, historyData);
+                    const sno = btn.getAttribute("data-sno");
+                    loadHistoricRecord(id, historyData, sno);
                 });
             });
 
@@ -723,7 +725,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // Load Historic Run details back to Upload Panel tab
-    function loadHistoricRecord(analysisId, rawData) {
+    function loadHistoricRecord(analysisId, rawData, sno = null) {
         const record = rawData.find(r => r.analysis_id === analysisId);
         if (!record) return;
 
@@ -738,7 +740,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (historyBanner) {
             historyBanner.classList.remove("hidden");
             const title = document.getElementById("history-banner-title");
-            if (title) title.textContent = `Viewing Historical Record: ${record.analysis_id ? record.analysis_id.substring(0, 8) : 'N/A'}...`;
+            if (title) title.textContent = `Viewing Historical Record ${sno ? '#' + sno : ''}`;
             const subtitle = document.getElementById("history-banner-subtitle");
             const recTime = new Date(record.timestamp).toLocaleString();
             if (subtitle) subtitle.textContent = `Count: ${record.count} people | Density Level: ${record.crowd_level} | Recorded: ${recTime}`;
