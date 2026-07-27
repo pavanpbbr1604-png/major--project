@@ -332,6 +332,10 @@ document.addEventListener("DOMContentLoaded", () => {
     function renderResults(data, isMulti) {
         const resultsDisplay = document.getElementById("results-display");
         resultsDisplay.classList.remove("hidden");
+
+        if (data && data.analysis_id) {
+            activeAnalysisId = data.analysis_id;
+        }
         
         // Show the reset iteration button
         const btnResetIteration = document.getElementById("btn-reset-iteration");
@@ -586,10 +590,108 @@ document.addEventListener("DOMContentLoaded", () => {
         img.src = url;
     }
 
+    let timeseriesChartInstance = null;
+    let distributionChartInstance = null;
+    let activeAnalysisId = null;
+
+    function renderAnalyticsCharts(historyData) {
+        if (!window.Chart || !historyData || historyData.length === 0) return;
+
+        // Sort data chronologically (oldest to newest for timeseries)
+        const sortedData = [...historyData].sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
+
+        const labels = sortedData.map(r => {
+            const dt = new Date(r.timestamp);
+            return dt.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        });
+
+        const counts = sortedData.map(r => r.count || 0);
+
+        // 1. Render Time-Series Headcount Line Chart
+        const tsCtx = document.getElementById("chart-timeseries");
+        if (tsCtx) {
+            if (timeseriesChartInstance) {
+                timeseriesChartInstance.destroy();
+            }
+            timeseriesChartInstance = new Chart(tsCtx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Estimated Crowd Count',
+                        data: counts,
+                        borderColor: '#2563eb',
+                        backgroundColor: 'rgba(37, 99, 235, 0.1)',
+                        borderWidth: 3,
+                        fill: true,
+                        tension: 0.35,
+                        pointBackgroundColor: '#0f172a',
+                        pointRadius: 4,
+                        pointHoverRadius: 6
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: { color: 'rgba(15, 23, 42, 0.06)' }
+                        },
+                        x: {
+                            grid: { display: false }
+                        }
+                    }
+                }
+            });
+        }
+
+        // 2. Render Congestion Risk Level Distribution Donut Chart
+        let underCount = 0, modCount = 0, overCount = 0;
+        historyData.forEach(r => {
+            const lvl = r.crowd_level || "Moderate";
+            if (lvl === "Undercrowded") underCount++;
+            else if (lvl === "Moderate") modCount++;
+            else if (lvl === "Overcrowded") overCount++;
+        });
+
+        const distCtx = document.getElementById("chart-distribution");
+        if (distCtx) {
+            if (distributionChartInstance) {
+                distributionChartInstance.destroy();
+            }
+            distributionChartInstance = new Chart(distCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Undercrowded', 'Moderate', 'Overcrowded'],
+                    datasets: [{
+                        data: [underCount, modCount, overCount],
+                        backgroundColor: ['#10b981', '#f59e0b', '#ef4444'],
+                        borderWidth: 2,
+                        borderColor: '#ffffff'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: { font: { family: 'Inter', size: 11 }, usePointStyle: true }
+                        }
+                    }
+                }
+            });
+        }
+    }
+
     // Populate SQL Logs Analysis History
     function loadHistoryTable() {
         const tbody = document.getElementById("history-table-body");
-        tbody.innerHTML = '<tr><td colspan="10" style="text-align:center">Fetching sqlite history logs...</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="11" style="text-align:center">Fetching sqlite history logs...</td></tr>';
 
         fetch("/history")
         .then(response => response.json())
@@ -597,7 +699,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const historyData = data.data || data; // handle wrapped response
             tbody.innerHTML = "";
             if (!historyData || historyData.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="10" style="text-align:center; padding: 30px; font-weight: bold; color: var(--text-muted)">No analysis runs stored in DB yet.</td></tr>';
+                tbody.innerHTML = '<tr><td colspan="11" style="text-align:center; padding: 30px; font-weight: bold; color: var(--text-muted)">No analysis runs stored in DB yet.</td></tr>';
                 return;
             }
 
@@ -626,12 +728,16 @@ document.addEventListener("DOMContentLoaded", () => {
                     <td>${row.density ? row.density.toFixed(2) : 0}%</td>
                     <td><span class="badge ${row.crowd_level === 'Undercrowded' ? 'badge-success' : row.crowd_level === 'Moderate' ? 'badge-warning' : 'badge-danger'}">${row.crowd_level}</span></td>
                     <td>${(row.reliability_score * 100).toFixed(0)}%</td>
+                    <td><button class="pdf-record-btn btn-mini" data-id="${row.analysis_id}" style="background:#0f172a; color:white; border:none; padding:5px 10px; border-radius:6px; font-weight:700; cursor:pointer;" title="Download PDF Executive Report">📄 PDF</button></td>
                     <td><button class="view-record-btn" data-id="${row.analysis_id}" data-sno="${sno}">View</button></td>
                     <td><button class="delete-record-btn" data-id="${row.analysis_id}" title="Delete Record">🗑️</button></td>
                 `;
                 
                 tbody.appendChild(tr);
             });
+
+            // Render interactive time-series and congestion distribution charts
+            renderAnalyticsCharts(historyData);
 
             // Add click handlers for history image thumbnail preview modal
             document.querySelectorAll(".history-thumb-img").forEach(img => {
@@ -641,6 +747,15 @@ document.addEventListener("DOMContentLoaded", () => {
                         modal.classList.remove("hidden");
                         modalImg.src = url;
                     }
+                });
+            });
+
+            // Add click handlers for PDF report download
+            document.querySelectorAll(".pdf-record-btn").forEach(btn => {
+                btn.addEventListener("click", (e) => {
+                    e.stopPropagation();
+                    const id = btn.getAttribute("data-id");
+                    window.location.href = `/history/export/pdf/${id}`;
                 });
             });
 
@@ -662,7 +777,35 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         })
         .catch(err => {
-            tbody.innerHTML = `<tr><td colspan="10" style="text-align:center; color:var(--status-danger)">History Fetch Failed: ${err.message}</td></tr>`;
+            tbody.innerHTML = `<tr><td colspan="11" style="text-align:center; color:var(--status-danger)">History Fetch Failed: ${err.message}</td></tr>`;
+        });
+    }
+
+    // Export CSV Listener
+    const exportCsvBtn = document.getElementById("btn-export-csv");
+    if (exportCsvBtn) {
+        exportCsvBtn.addEventListener("click", () => {
+            window.location.href = "/history/export/csv";
+        });
+    }
+
+    // Download PDF Executive Report Listener (Dashboard Header Button)
+    const downloadPdfBtn = document.getElementById("btn-download-pdf-report");
+    if (downloadPdfBtn) {
+        downloadPdfBtn.addEventListener("click", () => {
+            let targetId = activeAnalysisId;
+            const activeHist = sessionStorage.getItem("activeHistoryRecord");
+            if (activeHist) {
+                try {
+                    const parsed = JSON.parse(activeHist);
+                    if (parsed.analysisId) targetId = parsed.analysisId;
+                } catch (e) {}
+            }
+            if (targetId) {
+                window.location.href = `/history/export/pdf/${targetId}`;
+            } else {
+                alert("Please complete an image analysis or select a history record first to download its PDF report.");
+            }
         });
     }
 

@@ -4,7 +4,7 @@ import uuid
 import json
 import cv2
 import numpy as np
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, request, jsonify, render_template, send_file
 
 # Import modular utilities
 from utils.preprocessing import adaptive_preprocess
@@ -346,6 +346,76 @@ def delete_history_record_api(analysis_id):
             return jsonify({"status": "success", "message": "Record deleted."})
         else:
             return jsonify({"status": "error", "message": "Record not found."}), 404
+    except Exception as e:
+        return jsonify({"status": "error", "message": str(e)}), 500
+
+@app.route("/history/export/csv", methods=["GET"])
+def export_history_csv():
+    """
+    Exports all database history logs as a downloadable CSV file.
+    """
+    import io
+    import csv
+    from flask import Response
+    
+    recs = fetch_history()
+    output = io.StringIO()
+    writer = csv.writer(output)
+    
+    writer.writerow([
+        "S.No.",
+        "Analysis ID",
+        "Timestamp",
+        "Uploaded Images",
+        "Image Views Count",
+        "Total Count",
+        "Density Percentage",
+        "Crowd Level",
+        "Reliability Score",
+        "Fusion Strategy"
+    ])
+    
+    for idx, rec in enumerate(recs):
+        imgs = ", ".join(rec.get("uploaded_image_names", [])) if rec.get("uploaded_image_names") else "N/A"
+        views_cnt = len(rec.get("uploaded_image_names", [])) if rec.get("uploaded_image_names") else 1
+        fusion_strat = "Direct Analysis (Single Pass)"
+        if rec.get("per_image_details") and isinstance(rec["per_image_details"], dict) and rec["per_image_details"].get("fusion"):
+            fusion_strat = rec["per_image_details"]["fusion"].get("fusion_strategy", "Multi-Perspective Fusion")
+            
+        writer.writerow([
+            idx + 1,
+            rec.get("analysis_id", ""),
+            rec.get("timestamp", ""),
+            imgs,
+            views_cnt,
+            rec.get("count", 0),
+            f"{rec.get('density', 0):.2f}%",
+            rec.get("crowd_level", "N/A"),
+            f"{(rec.get('reliability_score', 0) * 100):.0f}%",
+            fusion_strat
+        ])
+    
+    output.seek(0)
+    return Response(
+        output.getvalue(),
+        mimetype="text/csv",
+        headers={"Content-Disposition": "attachment;filename=Crowd_Density_History_Logs.csv"}
+    )
+
+@app.route("/history/export/pdf/<analysis_id>", methods=["GET"])
+def export_history_pdf(analysis_id):
+    """
+    Generates and downloads a ReportLab Executive PDF Report for a given analysis_id.
+    """
+    try:
+        from utils.report_generator import generate_pdf_report
+        pdf_path = generate_pdf_report(analysis_id)
+        return send_file(
+            pdf_path,
+            as_attachment=True,
+            download_name=f"Executive_Crowd_Report_{analysis_id[:8]}.pdf",
+            mimetype="application/pdf"
+        )
     except Exception as e:
         return jsonify({"status": "error", "message": str(e)}), 500
 
