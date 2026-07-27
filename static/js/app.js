@@ -1,3 +1,8 @@
+document.addEventListener("DOMContentLoaded", () => {
+    // Navigation & Tab Switching
+    const navButtons = document.querySelectorAll(".nav-btn");
+    const tabPanes = document.querySelectorAll(".tab-pane");
+
     function exitHistoryMode() {
         const uploadPanelCard = document.getElementById("upload-panel-card");
         if (uploadPanelCard) uploadPanelCard.classList.remove("hidden");
