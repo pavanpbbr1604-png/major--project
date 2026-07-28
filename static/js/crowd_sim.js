@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
             initCityBackground();
             // Re-align y coordinates on resize
             peeps.forEach(p => {
-                p.y = canvas.height - (p.height * p.scale) + 72;
+                p.y = canvas.height - (p.height * p.scale) + 48;
             });
         }
     });
@@ -413,8 +413,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 this.x = this.direction === 1 ? -260 : canvas.width + 260;
             }
 
-            // Lock to floor cleanly (+72px offset down so body cuts sit safely below screen bottom)
-            this.y = canvas.height - (this.height * this.scale) + 72;
+            // Lock to floor cleanly (+48px offset for balanced baseline alignment)
+            this.y = canvas.height - (this.height * this.scale) + 48;
 
             // Character index (row in sprite sheet)
             this.peepIndex = Math.floor(Math.random() * rows);
