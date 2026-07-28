@@ -705,7 +705,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             historyData.forEach((row, index) => {
                 const tr = document.createElement("tr");
-                const timeString = new Date(row.timestamp).toLocaleString();
+                const timeString = new Date(row.timestamp).toLocaleString([], { dateStyle: 'short', timeStyle: 'short' });
                 const imageCount = row.uploaded_image_names ? row.uploaded_image_names.length : 1;
                 const sno = index + 1;
                 
@@ -717,20 +717,23 @@ document.addEventListener("DOMContentLoaded", () => {
                     thumbUrl = resolveImageUrl(null, row.analysis_id, true, 1);
                 }
                 
-                const thumbHtml = `<img src="${thumbUrl}" class="history-thumb-img" title="Click to zoom annotated processed image with detections" data-url="${thumbUrl}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'100\' height=\'70\' viewBox=\'0 0 100 70\'%3E%3Crect width=\'100\' height=\'70\' fill=\'%230f172a\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%2394a3b8\' font-size=\'10\'%3EN/A%3C/text%3E%3C/svg%3E'">`;
+                const thumbHtml = `<img src="${thumbUrl}" class="history-thumb-img" title="Click to zoom annotated processed image with detections" data-url="${thumbUrl}" style="margin:0 auto;" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'100\' height=\'70\' viewBox=\'0 0 100 70\'%3E%3Crect width=\'100\' height=\'70\' fill=\'%230f172a\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%2394a3b8\' font-size=\'10\'%3EN/A%3C/text%3E%3C/svg%3E'">`;
+
+                const rawImgNames = row.uploaded_image_names ? row.uploaded_image_names.join(", ") : 'Image';
+                const imgDisplayHtml = `<div style="max-width:180px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font-weight:500;" title="${rawImgNames}">${rawImgNames}</div><span style="font-size:10px; color:var(--text-muted);">(${imageCount} view${imageCount > 1 ? 's' : ''})</span>`;
 
                 tr.innerHTML = `
                     <td style="font-weight:700; color:var(--text-main); text-align:center;">#${sno}</td>
-                    <td>${timeString}</td>
-                    <td>${thumbHtml}</td>
-                    <td>${row.uploaded_image_names ? row.uploaded_image_names.join(", ") : 'Image'} (${imageCount} view${imageCount > 1 ? 's' : ''})</td>
-                    <td style="font-weight:600">${row.count}</td>
-                    <td>${row.density ? row.density.toFixed(2) : 0}%</td>
-                    <td><span class="badge ${row.crowd_level === 'Undercrowded' ? 'badge-success' : row.crowd_level === 'Moderate' ? 'badge-warning' : 'badge-danger'}">${row.crowd_level}</span></td>
-                    <td>${(row.reliability_score * 100).toFixed(0)}%</td>
-                    <td><button class="pdf-record-btn btn-mini" data-id="${row.analysis_id}" style="background:#0f172a; color:white; border:none; padding:5px 10px; border-radius:6px; font-weight:700; cursor:pointer;" title="Download PDF Executive Report">📄 PDF</button></td>
-                    <td><button class="view-record-btn" data-id="${row.analysis_id}" data-sno="${sno}">View</button></td>
-                    <td><button class="delete-record-btn" data-id="${row.analysis_id}" title="Delete Record">🗑️</button></td>
+                    <td style="font-size:11px; white-space:nowrap;">${timeString}</td>
+                    <td style="text-align:center;">${thumbHtml}</td>
+                    <td>${imgDisplayHtml}</td>
+                    <td style="font-weight:700; text-align:center;">${row.count}</td>
+                    <td style="text-align:center;">${row.density ? row.density.toFixed(1) : 0}%</td>
+                    <td style="text-align:center;"><span class="badge ${row.crowd_level === 'Undercrowded' ? 'badge-success' : row.crowd_level === 'Moderate' ? 'badge-warning' : 'badge-danger'}" style="font-size:10px; padding:3px 6px;">${row.crowd_level}</span></td>
+                    <td style="text-align:center; font-weight:600;">${(row.reliability_score * 100).toFixed(0)}%</td>
+                    <td style="text-align:center;"><button class="pdf-record-btn btn-mini" data-id="${row.analysis_id}" style="background:#0f172a; color:white; border:none; padding:4px 6px; border-radius:5px; font-weight:700; font-size:10px; cursor:pointer;" title="Download PDF Executive Report">📄 PDF</button></td>
+                    <td style="text-align:center;"><button class="view-record-btn" data-id="${row.analysis_id}" data-sno="${sno}" style="padding:4px 8px; font-size:10px;">View</button></td>
+                    <td style="text-align:center;"><button class="delete-record-btn" data-id="${row.analysis_id}" title="Delete Record" style="padding:3px; font-size:11px;">🗑️</button></td>
                 `;
                 
                 tbody.appendChild(tr);
