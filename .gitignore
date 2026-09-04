@@ -170,3 +170,7 @@ outputs/
 *.log
 .DS_Store
 tempCodeRunnerFile.py
+*.zip
+scratch/shanghaitech.zip
+scratch/shanghaitech_annotations/
+

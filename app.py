@@ -66,8 +66,8 @@ def process_single_image(image_bytes, filename, request_args, save_prefix=None):
     # Config parameters
     imgsz = int(request_args.get("imgsz", 2560))
     iou_thresh = float(request_args.get("iou_threshold", 0.50))
-    conf_thresh = float(request_args.get("conf_threshold", 0.25))
-    use_tiled = request_args.get("tiled", "true").lower() == "true"
+    conf_thresh = float(request_args.get("conf_threshold", 0.30))
+    use_tiled = request_args.get("tiled", "false").lower() == "true"
     tile_size = int(request_args.get("tile_size", 640))
     tile_overlap = int(request_args.get("tile_overlap", 128))
     use_tta = request_args.get("tta", "false").lower() == "true"
@@ -92,6 +92,12 @@ def process_single_image(image_bytes, filename, request_args, save_prefix=None):
     reliability_conf_thresh = float(request_args.get("reliability_conf_threshold", 0.65))
     reliability_consistency_thresh = float(request_args.get("reliability_consistency_threshold", 0.80))
     reliability_small_ratio_thresh = float(request_args.get("reliability_small_ratio_threshold", 0.20))
+
+    # Auto-upgrade to tiled mode for dense crowded scenes (>= 8 people) to capture all background diners
+    if not use_tiled and max(original_shape[:2]) >= 720:
+        std_dets = detector.detect_standard(yolo_input, conf_threshold=conf_thresh)
+        if len(std_dets) >= 8:
+            use_tiled = True
 
     raw_detections, consistency_score = detector.detect_hierarchical(
         yolo_input, 
@@ -430,4 +436,5 @@ def latest_analysis():
     return jsonify(rec)
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000, debug=True)
+    app.run(host="0.0.0.0", port=5000, debug=False, use_reloader=False)
+

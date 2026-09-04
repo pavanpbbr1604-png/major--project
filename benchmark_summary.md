@@ -4,21 +4,21 @@
 
 | Image Name | Ground Truth | Predicted | Absolute Error | Percentage Error | Precision | Recall | Runtime | Reliability |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| test_image1.jpg | 110 | 239 | 129 | 117.3% | 0.46 | 1.00 | 49043.3ms | 0.6826 |
-| test_image2.jpg | 110 | 239 | 129 | 117.3% | 0.46 | 1.00 | 47175.3ms | 0.6826 |
-| bus.jpg | 4 | 39 | 35 | 875.0% | 0.10 | 1.00 | 3942.8ms | 0.6961 |
-| zidane.jpg | 2 | 20 | 18 | 900.0% | 0.10 | 1.00 | 2602.4ms | 0.7074 |
+| test_image1.jpg | 110 | 111 | 1 | 0.9% | 0.99 | 1.00 | 11779.7ms | 0.6825 |
+| bus.jpg | 4 | 5 | 1 | 25.0% | 0.80 | 1.00 | 11179.2ms | 0.8660 |
+| zidane.jpg | 3 | 9 | 6 | 200.0% | 0.33 | 1.00 | 8151.0ms | 0.7722 |
+| basketball2.png | 14 | 4 | 10 | 71.4% | 1.00 | 0.29 | 10699.0ms | 0.7169 |
 
 ## Aggregated Summary
 
-* **Average Absolute Error:** 77.75 people
-* **Average Percentage Error:** 502.39%
-* **Average Runtime Latency:** 25691.0ms
-* **Average Reliability Score:** 0.6922
-* **Overall Precision:** 0.28
-* **Overall Recall:** 1.00
-* **Best Performing Image:** zidane.jpg (Error: 18)
-* **Worst Performing Image:** test_image1.jpg (Error: 129)
+* **Average Absolute Error:** 4.50 people
+* **Average Percentage Error:** 74.33%
+* **Average Runtime Latency:** 10452.2ms
+* **Average Reliability Score:** 0.7594
+* **Overall Precision:** 0.78
+* **Overall Recall:** 0.82
+* **Best Performing Image:** test_image1.jpg (Error: 1)
+* **Worst Performing Image:** basketball2.png (Error: 10)
 
 ## Visual Performance Graphs
 

@@ -184,7 +184,7 @@
                         <div class="form-group">
                             <label class="form-label" for="param-tiled">Sliding Window (Overlapping Tiling)</label>
                             <div class="toggle-switch">
-                                <input type="checkbox" id="param-tiled" checked>
+                                <input type="checkbox" id="param-tiled">
                                 <label for="param-tiled" class="switch-slider"></label>
                             </div>
                         </div>
@@ -221,15 +221,15 @@
                         <div class="form-group">
                             <label class="form-label" for="param-tta">Test Time Augmentation (TTA)</label>
                             <div class="toggle-switch">
-                                <input type="checkbox" id="param-tta" checked>
+                                <input type="checkbox" id="param-tta">
                                 <label for="param-tta" class="switch-slider"></label>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="form-label" for="param-conf-threshold" id="lbl-conf-threshold">Confidence Threshold</label>
-                            <input type="range" class="form-slider" id="param-conf-threshold" min="0.05" max="0.90" step="0.05" value="0.25">
-                            <div class="slider-val" id="val-conf-threshold">0.25 (Standard)</div>
+                            <input type="range" class="form-slider" id="param-conf-threshold" min="0.05" max="0.90" step="0.05" value="0.35">
+                            <div class="slider-val" id="val-conf-threshold">0.35 (Optimal)</div>
                         </div>
 
                         <div class="form-group">
@@ -487,35 +487,81 @@
         <!-- TAB 3: ABOUT PROJECT -->
         <section id="tab-about" class="tab-pane">
             <div class="card about-card">
-                <h2>Project Overview</h2>
-                <p><strong>Crowd Density Estimation using Multi-Perspective Image Analysis</strong> is a cutting-edge intelligent monitoring solution designed to understand, analyze, and manage crowd dynamics in highly congested environments. In today's rapidly urbanizing world, managing large gatherings—whether at concerts, transit hubs, or public squares—is absolutely critical for public safety and operational efficiency. Traditional counting methods often fall short when dealing with extreme congestion, occlusions, or overlapping sightlines.</p>
+                <h2>About the Project</h2>
+                <p class="about-subtitle"><strong>Crowd Density Estimation using Multi-Perspective Image Analysis</strong> is an AI-powered platform designed to estimate crowd headcount, analyze spatial density, and identify potential overcrowding risks in real time using camera images and multi-angle camera feeds.</p>
                 
-                <p>To solve this, our system analyzes physical spaces from multiple camera angles simultaneously. By intelligently combining these perspectives into a single unified view, the platform generates accurate, real-time insights into crowd sizes, spatial distribution, and density levels. This fundamentally transforms raw camera footage into actionable intelligence for crowd control.</p>
-                
-                <h3>Key Objectives & Capabilities</h3>
-                <ul class="about-list">
-                    <li><strong>Accurate Headcounting:</strong> Reliably detects and counts individuals even in ultra-dense environments where people might be partially hidden, wearing diverse clothing, or grouped tightly together in complex formations.</li>
-                    <li><strong>Spatial Density Analysis:</strong> Evaluates exactly how tightly packed a crowd is within a given footprint, transforming raw headcounts into critical spatial metrics used for capacity limit management and social distancing enforcement.</li>
-                    <li><strong>Multi-Camera Synchronization:</strong> Intelligently merges overlapping data from different camera angles covering the exact same area. This eliminates dangerous visual blind spots while automatically preventing the double-counting of the same individuals.</li>
-                    <li><strong>Proactive Safety Management:</strong> Automatically classifies crowd risk levels (ranging from 'Undercrowded' to 'Severe') to help security teams, city planners, and event organizers proactively deploy personnel and prevent dangerous bottlenecks before they happen.</li>
-                </ul>
+                <h3>Key Capabilities</h3>
+                <div class="tech-card-grid">
+                    <div class="tech-spec-card">
+                        <h4>🎯 Accurate Headcounting</h4>
+                        <p>Detects and counts people reliably, even in densely packed crowds or difficult lighting conditions.</p>
+                    </div>
+                    <div class="tech-spec-card">
+                        <h4>📹 Multi-Camera Fusion</h4>
+                        <p>Combines overlapping views from multiple cameras covering the same area while eliminating double-counting.</p>
+                    </div>
+                    <div class="tech-spec-card">
+                        <h4>⚠️ Real-Time Risk Alerts</h4>
+                        <p>Automatically classifies crowd congestion into safety risk levels (Low, Moderate, High, Severe).</p>
+                    </div>
+                    <div class="tech-spec-card">
+                        <h4>📄 Executive Reports</h4>
+                        <p>Generates downloadable PDF executive summary reports and exports historical analytics to CSV.</p>
+                    </div>
+                </div>
+
+                <h3>How It Works</h3>
+                <div class="pipeline-grid">
+                    <div class="pipeline-step-card">
+                        <div class="pipeline-header">
+                            <span class="pipeline-step-num">1</span>
+                            <span class="pipeline-step-title">Image Enhancement</span>
+                        </div>
+                        <p class="pipeline-desc">Adjusts lighting and contrast so individuals in dark shadows or bright glare are clearly visible to the AI model.</p>
+                    </div>
+
+                    <div class="pipeline-step-card">
+                        <div class="pipeline-header">
+                            <span class="pipeline-step-num">2</span>
+                            <span class="pipeline-step-title">AI Object Detection</span>
+                        </div>
+                        <p class="pipeline-desc">Uses deep learning (YOLOv8) to scan high-resolution photos and pinpoint individual heads in crowded spaces.</p>
+                    </div>
+
+                    <div class="pipeline-step-card">
+                        <div class="pipeline-header">
+                            <span class="pipeline-step-num">3</span>
+                            <span class="pipeline-step-title">Perspective Integration</span>
+                        </div>
+                        <p class="pipeline-desc">Intelligently merges data from multiple camera angles to form a single, unified crowd headcount.</p>
+                    </div>
+
+                    <div class="pipeline-step-card">
+                        <div class="pipeline-header">
+                            <span class="pipeline-step-num">4</span>
+                            <span class="pipeline-step-title">Density & Risk Evaluation</span>
+                        </div>
+                        <p class="pipeline-desc">Calculates spatial density (people per m²) and alerts safety teams if overcrowding thresholds are reached.</p>
+                    </div>
+                </div>
 
                 <h3>Real-World Applications</h3>
                 <ul class="about-list">
-                    <li><strong>Smart Cities & Public Spaces:</strong> Monitoring public squares, parks, and pedestrian zones to optimize city layouts and improve everyday foot traffic flow.</li>
-                    <li><strong>Transportation Hubs:</strong> Managing passenger density in train stations, subway platforms, and airport terminals to reduce congestion during peak travel hours.</li>
-                    <li><strong>Large-Scale Events:</strong> Ensuring strict safety protocol compliance at concerts, sports stadiums, and festivals by preventing dangerous overcrowding in critical chokepoints and exit routes.</li>
+                    <li><strong>Public Squares & Events:</strong> Monitor large public gatherings and festivals to prevent dangerous bottlenecks.</li>
+                    <li><strong>Transit Hubs:</strong> Track passenger flow in train stations, airport terminals, and subway platforms.</li>
+                    <li><strong>Stadiums & Venues:</strong> Ensure safe crowd distribution around exit gates and entry checkpoints.</li>
                 </ul>
 
-                <h3>Technologies Employed</h3>
+                <h3>Technologies Used</h3>
                 <div class="tech-tag-container">
                     <span class="tech-tag">Python</span>
                     <span class="tech-tag">Flask</span>
-                    <span class="tech-tag">PyTorch</span>
-                    <span class="tech-tag">YOLOv8x (Ultralytics)</span>
-                    <span class="tech-tag">OpenCV (cv2)</span>
+                    <span class="tech-tag">YOLOv8 AI</span>
+                    <span class="tech-tag">OpenCV</span>
+                    <span class="tech-tag">ONNX Runtime</span>
                     <span class="tech-tag">SQLite</span>
-                    <span class="tech-tag">HTML5 & Vanilla CSS</span>
+                    <span class="tech-tag">ReportLab PDF</span>
+                    <span class="tech-tag">HTML5 & CSS3</span>
                 </div>
             </div>
         </section>

@@ -1,0 +1,32 @@
+{
+  "total_images": 207,
+  "verified_ground_truth_count": 207,
+  "unverified_count": 0,
+  "overall_mae": 281.05314009661834,
+  "overall_rmse": 453.44024740974913,
+  "overall_mape": 69.15526570048308,
+  "mean_gt_count": 324.2463768115942,
+  "mean_pred_count": 43.61835748792271,
+  "mean_latency_ms": 17313.38347826087,
+  "mean_reliability": 0.7003338164251207,
+  "tier_metrics": {
+    "custom_benchmark_7": {
+      "count": 7,
+      "mae": 9.714285714285714,
+      "rmse": 12.305631695633158,
+      "mape": 24.83285714285714
+    },
+    "shanghaitech_part_b": {
+      "count": 100,
+      "mae": 93.98,
+      "rmse": 133.86896578370957,
+      "mape": 53.5591
+    },
+    "shanghaitech_part_a": {
+      "count": 100,
+      "mae": 487.12,
+      "rmse": 638.4960297448998,
+      "mape": 87.854
+    }
+  }
+}

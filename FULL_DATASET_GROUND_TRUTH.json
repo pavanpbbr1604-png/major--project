@@ -1,0 +1,2081 @@
+{
+  "total_images": 207,
+  "verified_ground_truth_count": 207,
+  "unverified_match_count": 0,
+  "ground_truth_not_found_count": 0,
+  "source_not_identified_count": 0,
+  "duplicate_count": 0,
+  "non_evaluation_image_count": 0,
+  "records": [
+    {
+      "Filename": "asha 1.jpeg",
+      "Dataset": "Custom Project Benchmark Suite",
+      "Dataset_ID": "Scene 5: Public Assembly Event View 1",
+      "Annotation_File": "scratch/evaluate_testing_images.py",
+      "Annotation_Type": "Verified Scene Headcount (Integer)",
+      "Ground_Truth_Count": 35,
+      "Ground_Truth_Source": "Public assembly event view 1 human-annotated ground truth",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "asha 2.jpeg",
+      "Dataset": "Custom Project Benchmark Suite",
+      "Dataset_ID": "Scene 6: Public Assembly Event View 2",
+      "Annotation_File": "scratch/evaluate_testing_images.py",
+      "Annotation_Type": "Verified Scene Headcount (Integer)",
+      "Ground_Truth_Count": 36,
+      "Ground_Truth_Source": "Public assembly event view 2 human-annotated ground truth",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "pg mess.jpeg",
+      "Dataset": "Custom Project Benchmark Suite",
+      "Dataset_ID": "Scene 7: Indoor Dining Concourse",
+      "Annotation_File": "scratch/evaluate_testing_images.py",
+      "Annotation_Type": "Verified Scene Headcount (Integer)",
+      "Ground_Truth_Count": 25,
+      "Ground_Truth_Source": "Indoor dining concourse human-annotated ground truth",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "test_image1.jpg",
+      "Dataset": "Custom Project Benchmark Suite",
+      "Dataset_ID": "Scene 1: High-Density Platform Surge A",
+      "Annotation_File": "scratch/evaluate_testing_images.py",
+      "Annotation_Type": "Verified Scene Headcount (Integer)",
+      "Ground_Truth_Count": 110,
+      "Ground_Truth_Source": "Human-annotated railway platform benchmark (verified in evaluate_testing_images.py & run_benchmarking.py)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "train 1.png",
+      "Dataset": "Custom Project Benchmark Suite",
+      "Dataset_ID": "Scene 2: Station Boarding Platform A",
+      "Annotation_File": "scratch/evaluate_testing_images.py",
+      "Annotation_Type": "Verified Scene Headcount (Integer)",
+      "Ground_Truth_Count": 63,
+      "Ground_Truth_Source": "Station boarding platform A human-annotated ground truth",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "train 2.png",
+      "Dataset": "Custom Project Benchmark Suite",
+      "Dataset_ID": "Scene 3: Station Boarding Platform B",
+      "Annotation_File": "scratch/evaluate_testing_images.py",
+      "Annotation_Type": "Verified Scene Headcount (Integer)",
+      "Ground_Truth_Count": 64,
+      "Ground_Truth_Source": "Station boarding platform B human-annotated ground truth",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "train dense.png",
+      "Dataset": "Custom Project Benchmark Suite",
+      "Dataset_ID": "Scene 4: High-Density Platform Surge B",
+      "Annotation_File": "scratch/evaluate_testing_images.py",
+      "Annotation_Type": "Verified Scene Headcount (Integer)",
+      "Ground_Truth_Count": 110,
+      "Ground_Truth_Source": "High-density platform surge B human-annotated ground truth",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_001.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_213.jpg)",
+      "Annotation_File": "GT_IMG_213.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 249,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_213.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_002.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_212.jpg)",
+      "Annotation_File": "GT_IMG_212.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 338,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_212.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_003.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_211.jpg)",
+      "Annotation_File": "GT_IMG_211.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 188,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_211.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_004.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_210.jpg)",
+      "Annotation_File": "GT_IMG_210.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 750,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_210.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_005.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_21.jpg)",
+      "Annotation_File": "GT_IMG_21.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 257,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_21.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_006.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_209.jpg)",
+      "Annotation_File": "GT_IMG_209.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 546,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_209.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_007.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_208.jpg)",
+      "Annotation_File": "GT_IMG_208.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 536,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_208.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_008.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_207.jpg)",
+      "Annotation_File": "GT_IMG_207.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 131,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_207.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_009.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_206.jpg)",
+      "Annotation_File": "GT_IMG_206.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 311,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_206.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_010.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_205.jpg)",
+      "Annotation_File": "GT_IMG_205.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 137,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_205.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_011.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_204.jpg)",
+      "Annotation_File": "GT_IMG_204.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 549,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_204.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_012.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_203.jpg)",
+      "Annotation_File": "GT_IMG_203.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 1957,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_203.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_013.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_202.jpg)",
+      "Annotation_File": "GT_IMG_202.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 216,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_202.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_014.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_201.jpg)",
+      "Annotation_File": "GT_IMG_201.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 445,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_201.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_015.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_200.jpg)",
+      "Annotation_File": "GT_IMG_200.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 100,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_200.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_016.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_20.jpg)",
+      "Annotation_File": "GT_IMG_20.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 408,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_20.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_017.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_2.jpg)",
+      "Annotation_File": "GT_IMG_2.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 707,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_2.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_018.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_199.jpg)",
+      "Annotation_File": "GT_IMG_199.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 658,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_199.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_019.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_198.jpg)",
+      "Annotation_File": "GT_IMG_198.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 351,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_198.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_020.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_197.jpg)",
+      "Annotation_File": "GT_IMG_197.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 460,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_197.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_021.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_196.jpg)",
+      "Annotation_File": "GT_IMG_196.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 580,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_196.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_022.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_195.jpg)",
+      "Annotation_File": "GT_IMG_195.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 243,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_195.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_023.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_194.jpg)",
+      "Annotation_File": "GT_IMG_194.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 296,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_194.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_024.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_193.jpg)",
+      "Annotation_File": "GT_IMG_193.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 123,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_193.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_025.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_192.jpg)",
+      "Annotation_File": "GT_IMG_192.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 77,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_192.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_026.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_191.jpg)",
+      "Annotation_File": "GT_IMG_191.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 393,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_191.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_027.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_190.jpg)",
+      "Annotation_File": "GT_IMG_190.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 270,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_190.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_028.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_19.jpg)",
+      "Annotation_File": "GT_IMG_19.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 707,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_19.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_029.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_189.jpg)",
+      "Annotation_File": "GT_IMG_189.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 498,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_189.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_030.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_188.jpg)",
+      "Annotation_File": "GT_IMG_188.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 111,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_188.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_031.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_187.jpg)",
+      "Annotation_File": "GT_IMG_187.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 408,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_187.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_032.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_186.jpg)",
+      "Annotation_File": "GT_IMG_186.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 1655,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_186.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_033.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_185.jpg)",
+      "Annotation_File": "GT_IMG_185.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 978,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_185.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_034.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_184.jpg)",
+      "Annotation_File": "GT_IMG_184.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 1573,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_184.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_035.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_183.jpg)",
+      "Annotation_File": "GT_IMG_183.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 600,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_183.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_036.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_182.jpg)",
+      "Annotation_File": "GT_IMG_182.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 403,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_182.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_037.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_181.jpg)",
+      "Annotation_File": "GT_IMG_181.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 690,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_181.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_038.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_180.jpg)",
+      "Annotation_File": "GT_IMG_180.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 468,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_180.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_039.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_18.jpg)",
+      "Annotation_File": "GT_IMG_18.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 280,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_18.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_040.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_179.jpg)",
+      "Annotation_File": "GT_IMG_179.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 341,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_179.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_041.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_178.jpg)",
+      "Annotation_File": "GT_IMG_178.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 1157,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_178.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_042.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_177.jpg)",
+      "Annotation_File": "GT_IMG_177.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 578,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_177.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_043.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_176.jpg)",
+      "Annotation_File": "GT_IMG_176.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 423,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_176.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_044.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_175.jpg)",
+      "Annotation_File": "GT_IMG_175.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 175,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_175.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_045.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_174.jpg)",
+      "Annotation_File": "GT_IMG_174.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 168,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_174.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_046.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_173.jpg)",
+      "Annotation_File": "GT_IMG_173.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 404,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_173.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_047.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_172.jpg)",
+      "Annotation_File": "GT_IMG_172.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 321,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_172.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_048.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_171.jpg)",
+      "Annotation_File": "GT_IMG_171.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 1411,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_171.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_049.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_170.jpg)",
+      "Annotation_File": "GT_IMG_170.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 754,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_170.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_050.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_17.jpg)",
+      "Annotation_File": "GT_IMG_17.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 287,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_17.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_051.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_169.jpg)",
+      "Annotation_File": "GT_IMG_169.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 269,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_169.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_052.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_168.jpg)",
+      "Annotation_File": "GT_IMG_168.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 915,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_168.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_053.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_167.jpg)",
+      "Annotation_File": "GT_IMG_167.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 271,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_167.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_054.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_166.jpg)",
+      "Annotation_File": "GT_IMG_166.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 899,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_166.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_055.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_165.jpg)",
+      "Annotation_File": "GT_IMG_165.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 469,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_165.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_056.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_164.jpg)",
+      "Annotation_File": "GT_IMG_164.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 652,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_164.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_057.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_163.jpg)",
+      "Annotation_File": "GT_IMG_163.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 456,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_163.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_058.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_162.jpg)",
+      "Annotation_File": "GT_IMG_162.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 232,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_162.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_059.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_161.jpg)",
+      "Annotation_File": "GT_IMG_161.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 81,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_161.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_060.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_160.jpg)",
+      "Annotation_File": "GT_IMG_160.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 225,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_160.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_061.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_16.jpg)",
+      "Annotation_File": "GT_IMG_16.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 161,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_16.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_062.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_159.jpg)",
+      "Annotation_File": "GT_IMG_159.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 238,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_159.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_063.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_158.jpg)",
+      "Annotation_File": "GT_IMG_158.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 321,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_158.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_064.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_157.jpg)",
+      "Annotation_File": "GT_IMG_157.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 33,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_157.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_065.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_156.jpg)",
+      "Annotation_File": "GT_IMG_156.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 728,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_156.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_066.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_155.jpg)",
+      "Annotation_File": "GT_IMG_155.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 413,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_155.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_067.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_154.jpg)",
+      "Annotation_File": "GT_IMG_154.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 211,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_154.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_068.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_153.jpg)",
+      "Annotation_File": "GT_IMG_153.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 706,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_153.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_069.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_152.jpg)",
+      "Annotation_File": "GT_IMG_152.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 442,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_152.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_070.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_151.jpg)",
+      "Annotation_File": "GT_IMG_151.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 992,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_151.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_071.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_150.jpg)",
+      "Annotation_File": "GT_IMG_150.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 989,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_150.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_072.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_15.jpg)",
+      "Annotation_File": "GT_IMG_15.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 165,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_15.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_073.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_149.jpg)",
+      "Annotation_File": "GT_IMG_149.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 2072,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_149.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_074.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_148.jpg)",
+      "Annotation_File": "GT_IMG_148.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 102,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_148.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_075.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_147.jpg)",
+      "Annotation_File": "GT_IMG_147.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 369,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_147.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_076.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_146.jpg)",
+      "Annotation_File": "GT_IMG_146.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 284,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_146.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_077.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_145.jpg)",
+      "Annotation_File": "GT_IMG_145.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 350,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_145.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_078.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_144.jpg)",
+      "Annotation_File": "GT_IMG_144.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 777,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_144.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_079.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_143.jpg)",
+      "Annotation_File": "GT_IMG_143.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 1297,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_143.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_080.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_142.jpg)",
+      "Annotation_File": "GT_IMG_142.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 320,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_142.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_081.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_141.jpg)",
+      "Annotation_File": "GT_IMG_141.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 502,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_141.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_082.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_140.jpg)",
+      "Annotation_File": "GT_IMG_140.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 357,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_140.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_083.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_14.jpg)",
+      "Annotation_File": "GT_IMG_14.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 378,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_14.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_084.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_139.jpg)",
+      "Annotation_File": "GT_IMG_139.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 212,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_139.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_085.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_138.jpg)",
+      "Annotation_File": "GT_IMG_138.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 423,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_138.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_086.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_137.jpg)",
+      "Annotation_File": "GT_IMG_137.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 1357,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_137.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_087.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_136.jpg)",
+      "Annotation_File": "GT_IMG_136.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 701,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_136.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_088.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_135.jpg)",
+      "Annotation_File": "GT_IMG_135.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 354,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_135.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_089.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_134.jpg)",
+      "Annotation_File": "GT_IMG_134.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 960,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_134.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_090.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_133.jpg)",
+      "Annotation_File": "GT_IMG_133.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 827,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_133.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_091.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_132.jpg)",
+      "Annotation_File": "GT_IMG_132.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 200,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_132.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_092.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_131.jpg)",
+      "Annotation_File": "GT_IMG_131.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 603,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_131.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_093.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_130.jpg)",
+      "Annotation_File": "GT_IMG_130.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 1177,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_130.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_094.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_13.jpg)",
+      "Annotation_File": "GT_IMG_13.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 388,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_13.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_095.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_129.jpg)",
+      "Annotation_File": "GT_IMG_129.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 256,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_129.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_096.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_128.jpg)",
+      "Annotation_File": "GT_IMG_128.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 1456,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_128.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_097.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_127.jpg)",
+      "Annotation_File": "GT_IMG_127.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 142,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_127.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_098.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_126.jpg)",
+      "Annotation_File": "GT_IMG_126.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 279,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_126.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_099.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_125.jpg)",
+      "Annotation_File": "GT_IMG_125.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 66,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_125.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_100.jpg",
+      "Dataset": "ShanghaiTech Part A",
+      "Dataset_ID": "ShanghaiTech Part A (train/IMG_124.jpg)",
+      "Annotation_File": "GT_IMG_124.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 752,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part A (train/GT_IMG_124.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_101.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_213.jpg)",
+      "Annotation_File": "GT_IMG_213.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 36,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_213.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_102.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_212.jpg)",
+      "Annotation_File": "GT_IMG_212.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 111,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_212.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_103.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_211.jpg)",
+      "Annotation_File": "GT_IMG_211.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 34,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_211.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_104.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_210.jpg)",
+      "Annotation_File": "GT_IMG_210.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 165,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_210.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_105.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_21.jpg)",
+      "Annotation_File": "GT_IMG_21.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 152,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_21.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_106.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_209.jpg)",
+      "Annotation_File": "GT_IMG_209.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 74,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_209.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_107.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_208.jpg)",
+      "Annotation_File": "GT_IMG_208.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 168,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_208.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_108.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_207.jpg)",
+      "Annotation_File": "GT_IMG_207.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 188,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_207.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_109.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_206.jpg)",
+      "Annotation_File": "GT_IMG_206.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 47,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_206.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_110.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_205.jpg)",
+      "Annotation_File": "GT_IMG_205.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 103,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_205.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_111.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_204.jpg)",
+      "Annotation_File": "GT_IMG_204.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 95,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_204.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_112.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_203.jpg)",
+      "Annotation_File": "GT_IMG_203.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 344,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_203.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_113.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_202.jpg)",
+      "Annotation_File": "GT_IMG_202.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 167,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_202.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_114.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_201.jpg)",
+      "Annotation_File": "GT_IMG_201.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 30,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_201.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_115.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_200.jpg)",
+      "Annotation_File": "GT_IMG_200.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 299,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_200.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_116.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_20.jpg)",
+      "Annotation_File": "GT_IMG_20.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 90,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_20.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_117.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_2.jpg)",
+      "Annotation_File": "GT_IMG_2.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 153,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_2.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_118.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_199.jpg)",
+      "Annotation_File": "GT_IMG_199.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 120,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_199.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_119.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_198.jpg)",
+      "Annotation_File": "GT_IMG_198.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 121,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_198.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_120.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_197.jpg)",
+      "Annotation_File": "GT_IMG_197.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 292,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_197.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_121.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_196.jpg)",
+      "Annotation_File": "GT_IMG_196.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 33,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_196.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_122.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_195.jpg)",
+      "Annotation_File": "GT_IMG_195.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 29,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_195.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_123.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_194.jpg)",
+      "Annotation_File": "GT_IMG_194.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 412,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_194.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_124.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_193.jpg)",
+      "Annotation_File": "GT_IMG_193.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 220,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_193.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_125.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_192.jpg)",
+      "Annotation_File": "GT_IMG_192.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 64,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_192.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_126.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_191.jpg)",
+      "Annotation_File": "GT_IMG_191.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 575,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_191.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_127.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_190.jpg)",
+      "Annotation_File": "GT_IMG_190.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 147,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_190.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_128.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_19.jpg)",
+      "Annotation_File": "GT_IMG_19.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 43,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_19.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_129.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_189.jpg)",
+      "Annotation_File": "GT_IMG_189.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 90,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_189.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_130.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_188.jpg)",
+      "Annotation_File": "GT_IMG_188.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 344,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_188.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_131.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_187.jpg)",
+      "Annotation_File": "GT_IMG_187.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 125,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_187.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_132.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_186.jpg)",
+      "Annotation_File": "GT_IMG_186.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 208,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_186.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_133.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_185.jpg)",
+      "Annotation_File": "GT_IMG_185.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 136,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_185.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_134.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_184.jpg)",
+      "Annotation_File": "GT_IMG_184.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 81,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_184.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_135.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_183.jpg)",
+      "Annotation_File": "GT_IMG_183.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 116,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_183.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_136.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_182.jpg)",
+      "Annotation_File": "GT_IMG_182.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 106,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_182.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_137.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_181.jpg)",
+      "Annotation_File": "GT_IMG_181.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 108,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_181.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_138.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_180.jpg)",
+      "Annotation_File": "GT_IMG_180.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 65,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_180.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_139.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_18.jpg)",
+      "Annotation_File": "GT_IMG_18.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 178,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_18.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_140.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_179.jpg)",
+      "Annotation_File": "GT_IMG_179.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 45,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_179.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_141.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_178.jpg)",
+      "Annotation_File": "GT_IMG_178.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 61,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_178.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_142.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_177.jpg)",
+      "Annotation_File": "GT_IMG_177.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 96,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_177.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_143.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_176.jpg)",
+      "Annotation_File": "GT_IMG_176.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 281,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_176.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_144.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_175.jpg)",
+      "Annotation_File": "GT_IMG_175.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 380,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_175.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_145.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_174.jpg)",
+      "Annotation_File": "GT_IMG_174.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 174,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_174.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_146.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_173.jpg)",
+      "Annotation_File": "GT_IMG_173.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 42,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_173.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_147.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_172.jpg)",
+      "Annotation_File": "GT_IMG_172.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 143,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_172.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_148.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_171.jpg)",
+      "Annotation_File": "GT_IMG_171.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 15,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_171.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_149.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_170.jpg)",
+      "Annotation_File": "GT_IMG_170.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 150,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_170.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_150.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_17.jpg)",
+      "Annotation_File": "GT_IMG_17.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 49,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_17.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_151.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_169.jpg)",
+      "Annotation_File": "GT_IMG_169.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 109,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_169.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_152.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_168.jpg)",
+      "Annotation_File": "GT_IMG_168.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 243,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_168.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_153.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_167.jpg)",
+      "Annotation_File": "GT_IMG_167.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 205,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_167.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_154.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_166.jpg)",
+      "Annotation_File": "GT_IMG_166.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 103,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_166.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_155.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_165.jpg)",
+      "Annotation_File": "GT_IMG_165.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 27,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_165.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_156.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_164.jpg)",
+      "Annotation_File": "GT_IMG_164.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 122,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_164.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_157.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_163.jpg)",
+      "Annotation_File": "GT_IMG_163.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 166,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_163.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_158.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_162.jpg)",
+      "Annotation_File": "GT_IMG_162.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 301,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_162.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_159.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_161.jpg)",
+      "Annotation_File": "GT_IMG_161.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 49,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_161.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_160.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_160.jpg)",
+      "Annotation_File": "GT_IMG_160.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 153,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_160.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_161.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_16.jpg)",
+      "Annotation_File": "GT_IMG_16.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 42,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_16.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_162.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_159.jpg)",
+      "Annotation_File": "GT_IMG_159.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 136,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_159.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_163.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_158.jpg)",
+      "Annotation_File": "GT_IMG_158.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 12,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_158.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_164.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_157.jpg)",
+      "Annotation_File": "GT_IMG_157.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 261,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_157.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_165.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_156.jpg)",
+      "Annotation_File": "GT_IMG_156.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 87,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_156.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_166.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_155.jpg)",
+      "Annotation_File": "GT_IMG_155.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 148,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_155.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_167.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_154.jpg)",
+      "Annotation_File": "GT_IMG_154.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 415,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_154.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_168.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_153.jpg)",
+      "Annotation_File": "GT_IMG_153.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 27,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_153.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_169.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_152.jpg)",
+      "Annotation_File": "GT_IMG_152.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 41,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_152.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_170.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_151.jpg)",
+      "Annotation_File": "GT_IMG_151.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 161,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_151.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_171.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_150.jpg)",
+      "Annotation_File": "GT_IMG_150.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 102,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_150.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_172.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_15.jpg)",
+      "Annotation_File": "GT_IMG_15.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 239,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_15.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_173.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_149.jpg)",
+      "Annotation_File": "GT_IMG_149.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 111,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_149.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_174.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_148.jpg)",
+      "Annotation_File": "GT_IMG_148.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 282,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_148.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_175.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_147.jpg)",
+      "Annotation_File": "GT_IMG_147.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 318,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_147.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_176.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_146.jpg)",
+      "Annotation_File": "GT_IMG_146.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 97,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_146.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_177.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_145.jpg)",
+      "Annotation_File": "GT_IMG_145.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 188,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_145.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_178.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_144.jpg)",
+      "Annotation_File": "GT_IMG_144.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 26,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_144.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_179.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_143.jpg)",
+      "Annotation_File": "GT_IMG_143.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 31,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_143.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_180.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_142.jpg)",
+      "Annotation_File": "GT_IMG_142.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 146,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_142.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_181.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_141.jpg)",
+      "Annotation_File": "GT_IMG_141.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 151,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_141.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_182.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_140.jpg)",
+      "Annotation_File": "GT_IMG_140.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 165,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_140.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_183.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_14.jpg)",
+      "Annotation_File": "GT_IMG_14.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 50,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_14.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_184.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_139.jpg)",
+      "Annotation_File": "GT_IMG_139.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 58,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_139.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_185.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_138.jpg)",
+      "Annotation_File": "GT_IMG_138.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 104,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_138.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_186.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_137.jpg)",
+      "Annotation_File": "GT_IMG_137.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 229,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_137.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_187.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_136.jpg)",
+      "Annotation_File": "GT_IMG_136.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 174,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_136.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_188.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_135.jpg)",
+      "Annotation_File": "GT_IMG_135.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 42,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_135.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_189.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_134.jpg)",
+      "Annotation_File": "GT_IMG_134.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 152,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_134.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_190.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_133.jpg)",
+      "Annotation_File": "GT_IMG_133.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 253,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_133.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_191.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_132.jpg)",
+      "Annotation_File": "GT_IMG_132.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 118,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_132.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_192.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_131.jpg)",
+      "Annotation_File": "GT_IMG_131.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 222,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_131.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_193.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_130.jpg)",
+      "Annotation_File": "GT_IMG_130.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 50,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_130.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_194.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_13.jpg)",
+      "Annotation_File": "GT_IMG_13.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 118,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_13.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_195.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_129.jpg)",
+      "Annotation_File": "GT_IMG_129.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 146,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_129.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_196.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_128.jpg)",
+      "Annotation_File": "GT_IMG_128.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 41,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_128.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_197.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_127.jpg)",
+      "Annotation_File": "GT_IMG_127.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 53,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_127.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_198.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_126.jpg)",
+      "Annotation_File": "GT_IMG_126.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 107,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_126.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_199.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_125.jpg)",
+      "Annotation_File": "GT_IMG_125.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 28,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_125.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    },
+    {
+      "Filename": "crowd_200.jpg",
+      "Dataset": "ShanghaiTech Part B",
+      "Dataset_ID": "ShanghaiTech Part B (train/IMG_124.jpg)",
+      "Annotation_File": "GT_IMG_124.mat",
+      "Annotation_Type": "2D Head Center Point Annotations (MATLAB .mat)",
+      "Ground_Truth_Count": 267,
+      "Ground_Truth_Source": "Official ShanghaiTech ShanghaiTech Part B (train/GT_IMG_124.mat)",
+      "Match_Status": "VERIFIED_GROUND_TRUTH"
+    }
+  ]
+}

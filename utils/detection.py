@@ -172,7 +172,8 @@ class CrowdDetector:
                 callback=lambda slice_img: self._detect_slice(slice_img, conf_threshold),
                 slice_wh=(tile_size, tile_size),
                 overlap_wh=(overlap, overlap),
-                iou_threshold=0.50
+                iou_threshold=0.50,
+                overlap_filter=sv.OverlapFilter.NON_MAX_MERGE
             )
             sv_dets = slicer(image)
             
@@ -197,7 +198,9 @@ class CrowdDetector:
                     "confidence": float(conf)
                 })
             
-            return raw_detections, 0.95
+            from .redundancy import apply_nms
+            clean_tiled_dets = apply_nms(raw_detections, iou_threshold=0.45, iom_threshold=0.65)
+            return clean_tiled_dets, 0.95
         else:
             # Fallback mock tiled detections
             h, w = image.shape[:2]
